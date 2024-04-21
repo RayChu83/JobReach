@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="flex flex-col gap-y-4">
         <h1 className="sm:text-[42px] text-[32px] sm:leading-[50px] leading-[40px] font-semibold text-gray-700">
           Explore over 100+
-          <span className="text-[#1bbe17ff] drop-shadow-[0_0_125px_rgba(27,190,23,0.5)]">
+          <span className="text-[#1bbe17ff] drop-shadow-[0_0_125px_rgba(27,190,23,0.75)]">
             {" "}
             Job <br /> Opportunities
           </span>

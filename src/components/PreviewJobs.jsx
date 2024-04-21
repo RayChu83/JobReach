@@ -44,7 +44,7 @@ export default function PreviewJobs() {
       </section>
       <div className="flex justify-center">
         <Button className="m-auto" variant="cta" asChild>
-          <Link href="/jobs">See All Jobs</Link>
+          <Link href="/jobs?order=recent">See All Jobs</Link>
         </Button>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <ViewTransitions>
       <html lang="en">
-        <body className={`${inter.className} min-h-[100%]`}>
+        <body className={`${inter.className} min-h-[101vh]`}>
           <Navbar />
           {children}
         </body>
