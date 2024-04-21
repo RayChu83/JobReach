@@ -31,5 +31,5 @@ const companiesSchema = new Schema(
   }
 );
 
-export const Jobs = mongoose.models.jobs || mongoose.model("jobs", taskSchema);
+export const Jobs = mongoose.models.jobs || mongoose.model("jobs", jobSchema);
 export const Companies = mongoose.models.companies || mongoose.model("companies", companiesSchema)

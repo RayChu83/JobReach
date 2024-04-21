@@ -29,6 +29,9 @@ export default function Navbar() {
           <Link href="/jobs" className="hover:text-[#1bbe17ff]">
             Jobs
           </Link>
+          <Link href="/companies" className="hover:text-[#1bbe17ff]">
+            Companies
+          </Link>
           <Link href="/contact" className="hover:text-[#1bbe17ff]">
             Contact
           </Link>
