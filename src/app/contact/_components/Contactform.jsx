@@ -15,7 +15,7 @@ export default function Contactform() {
       formdata.get("email"),
       formdata.get("message"),
     ];
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/contact`, {
+    const res = await fetch(`/api/contact`, {
       method : "post",
       body : JSON.stringify({name, email, message})
     })
