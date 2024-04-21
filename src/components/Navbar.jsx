@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from 'next-view-transitions'
 import React from "react";
 
 export default function Navbar() {
@@ -12,8 +12,15 @@ export default function Navbar() {
             width={55}
             height={55}
             alt="logo image"
+            priority
           />
-          <Image src="/logo-text.png" width={150} height={55} alt="logo text" />
+          <Image
+            src="/logo-text.png"
+            width={150}
+            height={55}
+            alt="logo text"
+            priority
+          />
         </Link>
         <div className="sm:flex items-center gap-6 hidden">
           <Link href="/" className="hover:text-[#1bbe17ff]">

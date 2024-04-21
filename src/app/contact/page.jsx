@@ -47,15 +47,15 @@ export default function Contact() {
       <br />
       <section className="flex justify-between gap-8 flex-col sm:flex-row">
         <Contactform />
-        <div className="w-[50%]">
-          <article className="flex text-lg items-center gap-4">
+        <div className="w-full">
+          <article className="flex text-lg items-center gap-4 flex-wrap">
             <FaLocationDot />
             New York, Manhattan
           </article>
-          <article className="flex text-lg items-center gap-4">
-            <FaPhoneAlt /> 646-925-0205
+          <article className="flex text-lg items-center gap-4 flex-wrap">
+            <FaPhoneAlt /> 123-456-7890
           </article>
-          <article className="flex text-lg items-center gap-4">
+          <article className="flex text-lg items-center gap-4 flex-wrap">
             <IoMdMail />
             contact@jobreach.com
           </article>
