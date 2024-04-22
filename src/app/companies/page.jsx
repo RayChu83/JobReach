@@ -8,7 +8,8 @@ const getCompanies = async () => {
     const { companies } = await res.json();
     return companies;
   } catch (error) {
-    throw new Error("Failed to load companies, please try again!");
+    // throw new Error("Failed to load companies, please try again!");
+    console.log("Failed to load companies, please try again!")
   }
 };
 
