@@ -4,7 +4,8 @@ import React from "react";
 const getCompanies = async () => {
   "use server";
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies`);
+    console.log(`Fetching URL : ${process.env.NEXT_PUBLIC_URL}api/companies`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies`, {method : "get"});
     const { companies } = await res.json();
     return companies;
   } catch (error) {
@@ -15,6 +16,7 @@ const getCompanies = async () => {
 
 export default async function Companies() {
   const companies = await getCompanies()
+  console.log(companies)
   return (
     <main className="max-w-[1280px] p-4 m-auto grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1p-4 gap-4">
       {companies && companies.map((company) => (
