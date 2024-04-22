@@ -17,7 +17,7 @@ export default async function Companies() {
   const companies = await getCompanies()
   return (
     <main className="max-w-[1280px] p-4 m-auto grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1p-4 gap-4">
-      {companies.map((company) => (
+      {companies && companies.map((company) => (
         <article
           key={company._id}
           className="bg-[#F5F5F5] p-4 rounded-sm drop-shadow-sm"
