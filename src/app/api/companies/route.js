@@ -9,7 +9,7 @@ export async function GET(req) {
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json({ message: "An error occurred" }, { status: 500 });
+    return NextResponse.json({ message: "An error occurred, please try again!" }, { status: 500 });
   }
 }
 export async function POST(req) {
@@ -22,6 +22,6 @@ export async function POST(req) {
     });
     return NextResponse.json({ message: "Success", company }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "An error occurred" }, { status: 500 });
+    return NextResponse.json({ message: "An error occurred, please try again!" }, { status: 500 });
   }
 }
