@@ -9,7 +9,8 @@ const getCompanies = async () => {
   });
   const { companies } = await res.json();
   if (!res.ok || !companies) {
-    throw new Error("Failed to fetch companies, please try again!");
+    console.log("Failed to fetch companies, please try again!")
+    // throw new Error("Failed to fetch companies, please try again!");
   }
   return companies;
 };

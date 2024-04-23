@@ -11,7 +11,7 @@ const getJobs = async () => {
   });
   const { jobs } = await res.json();
   if (!res.ok || !jobs) {
-    throw new Error("Failed to fetch jobs, please try again!");
+    console.log("Failed to fetch jobs, please try again!")
   }
   return jobs.reverse().slice(0, 4);
 };

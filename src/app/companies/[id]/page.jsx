@@ -12,7 +12,7 @@ const getCompany = async (id) => {
   });
   const { company } = await res.json();
   if (!res.ok || !company) {
-    throw new Error("Failed to find company, please try again!");
+    console.log("Failed to find company, please try again!");
   }
   return company;
 };
@@ -38,7 +38,10 @@ export default async function CompanyDetail({ params: { id } }) {
           <section className="col-span-6 flex flex-col gap-4">
             {company.listings.length ? (
               company.listings.map((listing) => (
-                <article className="p-4 rounded-sm outline outline-gray-300 outline-1 drop-shadow-sm" key={listing._id}>
+                <article
+                  className="p-4 rounded-sm outline outline-gray-300 outline-1 drop-shadow-sm"
+                  key={listing._id}
+                >
                   <Link
                     href={`/jobs/${listing._id}`}
                     className="text-xl font-medium hover:underline"
@@ -52,13 +55,9 @@ export default async function CompanyDetail({ params: { id } }) {
                   >
                     {company.name}
                   </Link>
-                  <p className=" mb-2">
-                    {listing.description}
-                  </p>
+                  <p className=" mb-2">{listing.description}</p>
                   <div className="flex justify-end">
-                    <Button variant="cta">
-                      Apply
-                    </Button>
+                    <Button variant="cta">Apply</Button>
                   </div>
                 </article>
               ))
