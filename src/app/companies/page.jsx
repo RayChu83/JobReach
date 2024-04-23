@@ -5,12 +5,10 @@ const getCompanies = async () => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies`, {
     method: "get",
-    cache : "no-cache"
   });
   const { companies } = await res.json();
   if (!res.ok || !companies) {
-    console.log("Failed to fetch companies, please try again!")
-    // throw new Error("Failed to fetch companies, please try again!");
+    throw new Error("Failed to fetch companies, please try again!")
   }
   return companies;
 };

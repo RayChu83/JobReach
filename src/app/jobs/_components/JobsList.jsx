@@ -27,7 +27,6 @@ function sortAlphabetically(array, propertyName) {
 }
 
 export function JobsList({ jobs }) {
-  console.log(jobs);
   const [sort, setSort] = useState("alphabetical");
   switch (sort) {
     case "recent":

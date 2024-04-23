@@ -5,11 +5,10 @@ const getJobs = async () => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs`, {
     method: "get",
-    cache: "no-cache",
   });
   const { jobs } = await res.json();
   if (!res.ok || !jobs) {
-    console.log("Failed to fetch jobs, please try again!");
+    throw new Error("Failed to fetch jobs, please try again!");
   }
   return jobs;
 };

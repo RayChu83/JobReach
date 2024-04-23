@@ -8,11 +8,10 @@ const getCompany = async (id) => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies/${id}`, {
     method: "get",
-    cache: "no-cache",
   });
   const { company } = await res.json();
   if (!res.ok || !company) {
-    console.log("Failed to find company, please try again!");
+    throw new Error("Failed to find company, please try again!");
   }
   return company;
 };
