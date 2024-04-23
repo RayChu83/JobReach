@@ -5,6 +5,10 @@ const getJobs = async () => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs`, {
     method: "get",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
   });
   const { jobs } = await res.json();
   if (!res.ok || !jobs) {

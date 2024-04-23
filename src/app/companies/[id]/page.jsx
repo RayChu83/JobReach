@@ -8,6 +8,10 @@ const getCompany = async (id) => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies/${id}`, {
     method: "get",
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   });
   const { company } = await res.json();
   if (!res.ok || !company) {
