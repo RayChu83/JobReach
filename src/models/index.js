@@ -7,6 +7,7 @@ const jobSchema = new Schema(
   {
     title: String,
     description: String,
+    applied : Number,
     company: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "companys",

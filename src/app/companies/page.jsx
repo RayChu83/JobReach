@@ -3,9 +3,9 @@ import CompaniesList from "@/app/companies/_components/CompaniesList";
 
 const getCompanies = async () => {
   "use server";
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies`, {
     method: "get",
+    cache : "no-cache"
   });
   const { companies } = await res.json();
   if (!res.ok || !companies) {

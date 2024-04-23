@@ -1,6 +1,6 @@
-"use client";
+"use client"
+import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
-import { IoIosOptions } from "react-icons/io";
 import React, { useState } from "react";
 
 import {
@@ -9,6 +9,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { IoIosOptions } from "react-icons/io";
+import { Job } from "@/components/Job";
 
 function sortByMostRecent(array, timeProperty) {
   return array.sort(
@@ -26,21 +28,22 @@ function sortAlphabetically(array, propertyName) {
   return array.sort((a, b) => a[propertyName].localeCompare(b[propertyName]));
 }
 
-export default function CompaniesList({ companies }) {
+export function JobsList({ jobs }) {
+  console.log(jobs);
   const [sort, setSort] = useState("alphabetical");
   switch (sort) {
     case "recent":
-      sortByMostRecent(companies, "createdAt");
+      sortByMostRecent(jobs, "createdAt");
       break;
     case "oldest":
-      sortByOldest(companies, "createdAt");
+      sortByOldest(jobs, "createdAt");
       break;
     case "alphabetical":
-      sortAlphabetically(companies, "name");
+      sortAlphabetically(jobs, "title");
       break;
   }
   return (
-    <main className="max-w-[1280px] p-4 m-auto">
+    <main className="max-w-[1280px] m-auto p-4">
       <DropdownMenu className="ml-auto">
         <DropdownMenuTrigger className="flex items-center gap-1 ml-auto outline-none">
           <IoIosOptions />
@@ -73,26 +76,10 @@ export default function CompaniesList({ companies }) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1p-4 gap-4">
-        {companies &&
-          companies.map((company) => (
-            <article
-              key={company._id}
-              className="p-4 rounded-sm drop-shadow-sm outline outline-gray-300 outline-1"
-            >
-              <Link
-                href={`/companies/${company._id}`}
-                className="text-xl font-medium hover:underline"
-              >
-                {company.name}
-              </Link>
-              <br />
-              <small className="text-gray-500">
-                {company.listings.length} job
-                {company.listings.length !== 1 && "s"} open
-              </small>
-              <p className="line-clamp-4">{company.description}</p>
-            </article>
+      <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
+        {jobs &&
+          jobs.map((job) => (
+            <Job job={job} key={job._id}/>
           ))}
       </section>
     </main>

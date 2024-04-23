@@ -1,50 +1,36 @@
 import React from "react";
 import { Link } from "next-view-transitions";
 import { Button } from "@/components/ui/button";
+import { Job } from '@/components/Job';
 
-export default function PreviewJobs() {
+const getJobs = async () => {
+  "use server";
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs`, {
+    method: "get",
+    cache: "no-cache",
+  });
+  const { jobs } = await res.json();
+  if (!res.ok || !jobs) {
+    throw new Error("Failed to fetch jobs, please try again!");
+  }
+  return jobs.reverse().slice(0, 4);
+};
+
+export default async function PreviewJobs() {
+  const jobs = await getJobs();
   return (
     <div className="max-w-[1280px] m-auto p-4 ">
       <h1 className="text-3xl font-medium">Recent Listings:</h1>
       <br />
       <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
-        <article className="bg-[#F5F5F5] p-4 rounded-sm drop-shadow-sm">
-          <h1 className="text-xl font-medium">Front-End Developer</h1>
-          <small className="text-gray-500">Google</small>
-          <p className="line-clamp-2 overflow-hidden">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel
-            voluptate itaque dicta!
-          </p>
-        </article>
-        <article className="bg-[#F5F5F5] p-4 rounded-sm drop-shadow-sm">
-          <h1 className="text-xl font-medium">Back-End Developer</h1>
-          <small className="text-gray-500">Microsoft</small>
-          <p className="line-clamp-2 overflow-hidden">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
-            ea officia libero velit vitae.
-          </p>
-        </article>
-        <article className="bg-[#F5F5F5] p-4 rounded-sm drop-shadow-sm">
-          <h1 className="text-xl font-medium">Full Stack Developer</h1>
-          <small className="text-gray-500">Google</small>
-          <p className="line-clamp-2 overflow-hidden">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore
-            dolor beatae itaque asperiores eum! Temporibus earum dolore totam
-            maxime nulla, nostrum ipsa!
-          </p>
-        </article>
-        <article className="bg-[#F5F5F5] p-4 rounded-sm drop-shadow-sm">
-          <h1 className="text-xl font-medium">UI UX Designer</h1>
-          <small className="text-gray-500">Amazon</small>
-          <p className="line-clamp-2 overflow-hidden">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni odio
-            dignissimos alias blanditiis animi?
-          </p>
-        </article>
+        {jobs &&
+          jobs.map((job) => (
+            <Job job={job} key={job._id}/>
+          ))} 
       </section>
       <div className="flex justify-center">
         <Button className="m-auto" variant="cta" asChild>
-          <Link href="/jobs?order=recent">See All Jobs</Link>
+          <Link href="/jobs">See All Jobs</Link>
         </Button>
       </div>
     </div>
