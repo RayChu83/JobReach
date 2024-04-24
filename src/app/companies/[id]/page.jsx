@@ -48,7 +48,7 @@ export default async function CompanyDetail({ params: { id } }) {
                 >
                   <Link
                     href={`/jobs/${listing._id}`}
-                    className="text-xl font-medium hover:underline"
+                    className="text-xl font-medium hover:text-[#1bbe17ff]"
                   >
                     {listing.title}
                   </Link>
@@ -59,7 +59,7 @@ export default async function CompanyDetail({ params: { id } }) {
                   >
                     {company.name}
                   </Link>
-                  <p className=" mb-2">{listing.description}</p>
+                  <p className="mb-2">{listing.description}</p>
                   <div className="flex justify-end">
                     <Button variant="cta">Apply</Button>
                   </div>
@@ -69,7 +69,7 @@ export default async function CompanyDetail({ params: { id } }) {
               <p></p>
             )}
           </section>
-          <section className="col-span-4 sticky top-[108px] p-4 h-fit rounded-sm drop-shadow-sm">
+          <section className="col-span-4 sticky top-[108px] p-4 h-fit">
             <h1 className="text-2xl font-medium">{company.name}</h1>
             <small className="text-gray-500">
               {company.listings.length} job

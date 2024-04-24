@@ -9,7 +9,7 @@ export function Job({ job }) {
     >
       <Link
         href={`/jobs/${job._id}`}
-        className="text-xl font-medium hover:underline line-clamp-1"
+        className="text-xl font-medium line-clamp-1 w-fit hover:text-[#1bbe17ff]"
       >
         {job.title}
       </Link>
@@ -19,7 +19,7 @@ export function Job({ job }) {
       >
         {job.company.name}
       </Link>
-      <p className="line-clamp-2 overflow-hidden mb-2">{job.description}</p>
+      <p className="line-clamp-2 overflow-hidden mb-2" title={job.description}>{job.description}</p>
       <div className="flex justify-end">
         <Button variant="link" size="paddingNone" asChild><Link href={`/jobs/${job._id}`}>See Details</Link></Button>
       </div>

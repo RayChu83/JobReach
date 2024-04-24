@@ -1,7 +1,7 @@
 "use client";
-import { Link } from "next-view-transitions";
 import { IoIosOptions } from "react-icons/io";
 import React, { useState } from "react";
+import { Company } from "@/app/companies/_components/Company";
 
 import {
   DropdownMenu,
@@ -73,26 +73,10 @@ export default function CompaniesList({ companies }) {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1p-4 gap-4">
+      <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
         {companies &&
           companies.map((company) => (
-            <article
-              key={company._id}
-              className="p-4 rounded-sm drop-shadow-sm outline outline-gray-300 outline-1"
-            >
-              <Link
-                href={`/companies/${company._id}`}
-                className="text-xl font-medium hover:underline"
-              >
-                {company.name}
-              </Link>
-              <br />
-              <small className="text-gray-500">
-                {company.listings.length} job
-                {company.listings.length !== 1 && "s"} open
-              </small>
-              <p className="line-clamp-4">{company.description}</p>
-            </article>
+            <Company key={company._id} company={company} />
           ))}
       </section>
     </main>
