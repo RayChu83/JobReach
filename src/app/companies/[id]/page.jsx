@@ -8,6 +8,7 @@ const getCompany = async (id) => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies/${id}`, {
     method: "get",
+    cache : "no-store",
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
