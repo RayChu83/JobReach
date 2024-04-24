@@ -17,7 +17,7 @@ const getCompany = async (id) => {
   if (!res.ok || !resData.company) {
     throw new Error("Failed to find company, please try again!");
   }
-  return company;
+  return resData.company;
 };
 
 export default async function CompanyDetail({ params: { id } }) {

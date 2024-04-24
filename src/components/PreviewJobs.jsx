@@ -16,7 +16,7 @@ const getJobs = async () => {
   if (!res.ok || !resData?.jobs) {
     throw new Error("Failed to fetch jobs, please try again!");
   }
-  return jobs.reverse().slice(0, 4);
+  return resData.jobs.reverse().slice(0, 4);
 };
 
 export default async function PreviewJobs() {

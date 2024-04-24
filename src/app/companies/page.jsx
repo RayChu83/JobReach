@@ -14,7 +14,7 @@ const getCompanies = async () => {
   if (!res.ok || !resData?.companies) {
     throw new Error("Failed to fetch companies, please try again!")
   }
-  return companies;
+  return resData.companies;
 };
 
 export default async function Companies() {

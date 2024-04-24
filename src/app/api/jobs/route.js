@@ -7,7 +7,6 @@ export async function GET(req) {
       path: "company",
       model: Companies,
     });
-    console.log(jobs)
     return NextResponse.json({ message: "Success", jobs }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

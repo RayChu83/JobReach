@@ -14,7 +14,7 @@ const getJobs = async () => {
   if (!res.ok || !resData?.jobs) {
     throw new Error("Failed to fetch jobs, please try again!");
   }
-  return jobs;
+  return resData.jobs;
 };
 
 export default async function Jobs() {
