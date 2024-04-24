@@ -13,8 +13,8 @@ const getCompany = async (id) => {
       'Content-Type': 'application/json',
     },
   });
-  const { company } = await res.json();
-  if (!res.ok || !company) {
+  const resData = await res.json();
+  if (!res.ok || !resData.company) {
     throw new Error("Failed to find company, please try again!");
   }
   return company;

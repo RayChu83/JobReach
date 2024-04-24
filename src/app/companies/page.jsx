@@ -10,8 +10,8 @@ const getCompanies = async () => {
       'Content-Type': 'application/json',
     },
   });
-  const { companies } = await res.json();
-  if (!res.ok || !companies) {
+  const resData = await res.json();
+  if (!res.ok || !resData?.companies) {
     throw new Error("Failed to fetch companies, please try again!")
   }
   return companies;

@@ -10,8 +10,8 @@ const getJobs = async () => {
       "Content-Type": "application/json",
     },
   });
-  const { jobs } = await res.json();
-  if (!res.ok || !jobs) {
+  const resData = await res.json();
+  if (!res.ok || !resData?.jobs) {
     throw new Error("Failed to fetch jobs, please try again!");
   }
   return jobs;
