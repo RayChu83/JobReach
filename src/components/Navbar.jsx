@@ -1,6 +1,8 @@
+"use client"
 import Image from "next/image";
-import { Link } from 'next-view-transitions'
+import { Link } from "next-view-transitions";
 import React from "react";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
   return (

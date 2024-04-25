@@ -3,6 +3,7 @@ import React from "react";
 // import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
+import { Apply } from "@/components/Apply";
 
 const getCompany = async (id) => {
   "use server";
@@ -61,7 +62,7 @@ export default async function CompanyDetail({ params: { id } }) {
                   </Link>
                   <p className="mb-2">{listing.description}</p>
                   <div className="flex justify-end">
-                    <Button variant="cta">Apply</Button>
+                    <Apply id={listing._id}/>
                   </div>
                 </article>
               ))

@@ -9,22 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-function sortByMostRecent(array, timeProperty) {
-  return array.sort(
-    (a, b) => new Date(b[timeProperty]) - new Date(a[timeProperty])
-  );
-}
-
-function sortByOldest(array, timeProperty) {
-  return array.sort(
-    (a, b) => new Date(a[timeProperty]) - new Date(b[timeProperty])
-  );
-}
-
-function sortAlphabetically(array, propertyName) {
-  return array.sort((a, b) => a[propertyName].localeCompare(b[propertyName]));
-}
+import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
 
 export default function CompaniesList({ companies }) {
   const [sort, setSort] = useState("alphabetical");

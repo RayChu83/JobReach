@@ -9,22 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IoIosOptions } from "react-icons/io";
 import { Job } from "@/components/Job";
+import { sortAlphabetically, sortByMostRecent, sortByOldest } from '@/utils';
 
-function sortByMostRecent(array, timeProperty) {
-  return array.sort(
-    (a, b) => new Date(b[timeProperty]) - new Date(a[timeProperty])
-  );
-}
-
-function sortByOldest(array, timeProperty) {
-  return array.sort(
-    (a, b) => new Date(a[timeProperty]) - new Date(b[timeProperty])
-  );
-}
-
-function sortAlphabetically(array, propertyName) {
-  return array.sort((a, b) => a[propertyName].localeCompare(b[propertyName]));
-}
 
 export function JobsList({ jobs }) {
   const [sort, setSort] = useState("alphabetical");
