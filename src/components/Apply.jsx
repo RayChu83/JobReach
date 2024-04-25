@@ -1,8 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-export function Apply({id}) {
+export function Apply({ id }) {
+  const router = useRouter();
   const [applied, setApplied] = useState(false);
   const apply = async () => {
     const res = await fetch(`/api/jobs/apply/${id}`, {
@@ -14,7 +16,8 @@ export function Apply({id}) {
       },
     });
     if (res.ok) {
-    setApplied(true);
+      setApplied(true);
+      router.refresh();
     }
   };
   return (

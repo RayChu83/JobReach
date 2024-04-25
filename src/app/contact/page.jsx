@@ -22,23 +22,19 @@ export default function Contact() {
         <AccordionItem value="item-1">
           <AccordionTrigger>Is JobReach free-to-use?</AccordionTrigger>
           <AccordionContent>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quasi
-            eligendi autem id, sunt consequuntur nulla odio laborum expedita
-            fuga repellendus? Veniam, eveniet.
+            Yes, JobReach is completely free to use. Apply to as many positions as you&apos;d like.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
           <AccordionTrigger>How does JobReach work?</AccordionTrigger>
           <AccordionContent>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima,
-            totam? Omnis, minima magni? At, repudiandae porro.
+            Employers or Organizations looking to hire post job listings, and based on your interests, you may apply for these positions.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
           <AccordionTrigger>Are there any remote positions?</AccordionTrigger>
           <AccordionContent>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-            sapiente est itaque culpa assumenda nemo dicta ipsum iusto.
+            Yes, but not all positions are remote; some may be hybrid or in person.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
