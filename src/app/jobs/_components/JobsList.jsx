@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 
 import {
@@ -9,61 +9,65 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IoIosOptions } from "react-icons/io";
 import { Job } from "@/components/Job";
-import { sortAlphabetically, sortByMostRecent, sortByOldest } from '@/utils';
-
+import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
+import { SearchBar } from "@/components/SearchBar";
 
 export function JobsList({ jobs }) {
+  const [sortedJobs, setSortedJobs] = useState(jobs);
   const [sort, setSort] = useState("alphabetical");
   switch (sort) {
     case "recent":
-      sortByMostRecent(jobs, "createdAt");
+      sortByMostRecent(sortedJobs, "createdAt");
       break;
     case "oldest":
-      sortByOldest(jobs, "createdAt");
+      sortByOldest(sortedJobs, "createdAt");
       break;
     case "alphabetical":
-      sortAlphabetically(jobs, "title");
+      sortAlphabetically(sortedJobs, "title");
       break;
   }
   return (
     <main className="max-w-[1280px] m-auto p-4">
-      <DropdownMenu className="ml-auto">
-        <DropdownMenuTrigger className="flex items-center gap-1 ml-auto outline-none">
-          <IoIosOptions />
-          Sort
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem
-            onClick={() => {
-              setSort("alphabetical");
-            }}
-            className={sort === "alphabetical" && "font-semibold"}
-          >
-            A-Z
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => {
-              setSort("recent");
-            }}
-            className={sort === "recent" && "font-semibold"}
-          >
-            Most Recent
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => {
-              setSort("oldest");
-            }}
-            className={sort === "oldest" && "font-semibold"}
-          >
-            Most Oldest
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <section className="flex items-center mb-2 gap-2 bg-[#F5F5F5] px-4 py-1 rounded-sm drop-shadow-sm w-[100%]">
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <IoIosOptions className="text-xl" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem
+              onClick={() => {
+                setSort("alphabetical");
+              }}
+              className={sort === "alphabetical" && "font-semibold"}
+            >
+              A-Z
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                setSort("recent");
+              }}
+              className={sort === "recent" && "font-semibold"}
+            >
+              Most Recent
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                setSort("oldest");
+              }}
+              className={sort === "oldest" && "font-semibold"}
+            >
+              Most Oldest
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <SearchBar
+          data={jobs}
+          update={setSortedJobs}
+          fields={["title", "description"]}
+        />
+      </section>
       <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
-        {jobs &&
-          jobs.map((job) => (
-            <Job job={job} key={job._id}/>
-          ))}
+        {sortedJobs && sortedJobs.map((job) => <Job job={job} key={job._id} />)}
       </section>
     </main>
   );

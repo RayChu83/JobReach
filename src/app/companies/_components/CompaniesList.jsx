@@ -10,57 +10,61 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
+import { SearchBar } from "@/components/SearchBar";
 
 export default function CompaniesList({ companies }) {
+  const [filteredCompanies, setFilteredCompanies] = useState(companies);
   const [sort, setSort] = useState("alphabetical");
   switch (sort) {
     case "recent":
-      sortByMostRecent(companies, "createdAt");
+      sortByMostRecent(filteredCompanies, "createdAt");
       break;
     case "oldest":
-      sortByOldest(companies, "createdAt");
+      sortByOldest(filteredCompanies, "createdAt");
       break;
     case "alphabetical":
-      sortAlphabetically(companies, "name");
+      sortAlphabetically(filteredCompanies, "name");
       break;
   }
   return (
     <main className="max-w-[1280px] p-4 m-auto">
-      <DropdownMenu className="ml-auto">
-        <DropdownMenuTrigger className="flex items-center gap-1 ml-auto outline-none">
-          <IoIosOptions />
-          Sort
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          <DropdownMenuItem
-            onClick={() => {
-              setSort("alphabetical");
-            }}
-            className={sort === "alphabetical" && "font-semibold"}
-          >
-            A-Z
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => {
-              setSort("recent");
-            }}
-            className={sort === "recent" && "font-semibold"}
-          >
-            Most Recent
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => {
-              setSort("oldest");
-            }}
-            className={sort === "oldest" && "font-semibold"}
-          >
-            Most Oldest
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <section className="flex items-center mb-2 gap-2 bg-[#F5F5F5] w-[100%] px-4 py-1 rounded-sm drop-shadow-sm">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="ml-auto outline-none">
+            <IoIosOptions className="text-xl"/>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem
+              onClick={() => {
+                setSort("alphabetical");
+              }}
+              className={sort === "alphabetical" && "font-semibold"}
+            >
+              A-Z
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                setSort("recent");
+              }}
+              className={sort === "recent" && "font-semibold"}
+            >
+              Most Recent
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                setSort("oldest");
+              }}
+              className={sort === "oldest" && "font-semibold"}
+            >
+              Most Oldest
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <SearchBar data={companies} update={setFilteredCompanies} fields={["name", "description"]} />
+      </section>
       <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
-        {companies &&
-          companies.map((company) => (
+        {filteredCompanies &&
+          filteredCompanies.map((company) => (
             <Company key={company._id} company={company} />
           ))}
       </section>

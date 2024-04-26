@@ -1,6 +1,6 @@
 export const getTotalApplicantsMessage = (applicants) => {
   let text;
-  console.log(applicants)
+  console.log(applicants);
   switch (true) {
     case applicants === 0:
       text = "Be the first to apply to this role!";
@@ -29,4 +29,11 @@ export const sortByOldest = (array, timeProperty) => {
 
 export const sortAlphabetically = (array, propertyName) => {
   return array.sort((a, b) => a[propertyName].localeCompare(b[propertyName]));
+};
+
+export const filterBySearch = (data, update, search, fields) => {
+  const result = data.filter((item) =>
+    fields.some((field) => item[field].toLowerCase().includes(search.toLowerCase()))
+  );
+  update(result);
 };
