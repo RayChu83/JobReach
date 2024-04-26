@@ -17,7 +17,9 @@ export function SearchBar({ data, update, fields }) {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <IoSearch className="cursor-pointer text-xl hover:text-[#1bbe17ff]" />
+      <button type="submit">
+        <IoSearch className="cursor-pointer text-xl active:text-[#1bbe17ff]" />
+      </button>
     </form>
   );
 }
