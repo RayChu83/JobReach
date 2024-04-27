@@ -3,6 +3,7 @@ import { Link } from "next-view-transitions";
 import { Job } from "@/components/Job";
 import { getTotalApplicantsMessage } from "@/utils";
 import { Apply } from "@/components/Apply";
+import { FaLocationDot } from "react-icons/fa6";
 
 const getJob = async (id) => {
   "use server";
@@ -44,17 +45,16 @@ export default async function JobDetailed({ params: { id } }) {
               <Apply id={job._id} />
             </div>
             <p className="mb-4">{job.description}</p>
-            <h2 className=" text-xl font-medium mb-4">Find more roles:</h2>
+            <h2 className=" text-xl font-medium mb-4">Find similar roles:</h2>
             <section className="grid sm:grid-cols-2 grid-cols-1 gap-4">
               {job.company.listings.length &&
                 job.company.listings
                   .filter((listing) => listing._id !== id)
-                  .sort(() => 0.5 - Math.random())
                   .slice(0, 2)
                   .map((listing) => <Job job={listing} key={listing._id} />)}
             </section>
           </article>
-          <article className="col-span-4 p-4 sticky top-[108px] h-fit order-1 md:block hidden">
+          <article className="col-span-4 p-4 sticky top-[108px] h-fit order-1 md:block hidden bg-[#F5F5F5] rounded-sm drop-shadow-sm">
             <Link
               href={`/companies/${job.company._id}`}
               className="text-2xl hover:text-[#1bbe17ff]"
@@ -62,9 +62,9 @@ export default async function JobDetailed({ params: { id } }) {
               {job.company.name}
             </Link>
             <br />
-            <small className="text-gray-500">
-              {job.company.listings.length} job
-              {job.company.listings.length !== 1 && "s"} available
+            <small className="text-gray-500 flex items-center gap-1">
+              <FaLocationDot />
+              {job.company.location}
             </small>
             <p>{job.company.description}</p>
           </article>

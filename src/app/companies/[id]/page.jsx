@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "next-view-transitions";
 import { Apply } from "@/components/Apply";
+import { FaLocationDot } from "react-icons/fa6";
 
 const getCompany = async (id) => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies/${id}`, {
     method: "get",
-    cache : "no-store",
+    cache: "no-store",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
   });
   const resData = await res.json();
@@ -22,10 +23,10 @@ const getCompany = async (id) => {
 export default async function CompanyDetail({ params: { id } }) {
   const company = await getCompany(id);
   return (
-    <main className="max-w-[1280px] m-auto p-4 grid grid-cols-1 md:grid-cols-10 gap-4">
+    <main className="max-w-[1280px] m-auto p-4 flex flex-col-reverse md:grid grid-cols-10 gap-4">
       {company && (
         <>
-          <section className="col-span-6 flex flex-col gap-4">
+          <section className="md:col-span-6 flex flex-col gap-4">
             {company.listings.length ? (
               company.listings.map((listing) => (
                 <article
@@ -47,7 +48,7 @@ export default async function CompanyDetail({ params: { id } }) {
                   </Link>
                   <p className="mb-2">{listing.description}</p>
                   <div className="flex justify-end">
-                    <Apply id={listing._id}/>
+                    <Apply id={listing._id} />
                   </div>
                 </article>
               ))
@@ -55,14 +56,14 @@ export default async function CompanyDetail({ params: { id } }) {
               <p></p>
             )}
           </section>
-          <section className="col-span-4 sticky top-[108px] p-4 h-fit">
+          <article className="md:col-span-4 block md:sticky top-[108px] p-4 h-fit bg-[#F5F5F5] rounded-sm drop-shadow-sm">
             <h1 className="text-2xl font-medium">{company.name}</h1>
-            <small className="text-gray-500">
-              {company.listings.length} job
-              {company.listings.length !== 1 && "s"} available
+            <small className="text-gray-500 flex items-center gap-1">
+              <FaLocationDot />
+              {company.location}
             </small>
             <p>{company.description}</p>
-          </section>
+          </article>
         </>
       )}
     </main>
