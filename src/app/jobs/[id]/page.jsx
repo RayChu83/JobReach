@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
 import { Job } from "@/components/Job";
 import { getTotalApplicantsMessage } from "@/utils";
@@ -29,7 +28,7 @@ export default async function JobDetailed({ params: { id } }) {
       {job && (
         <>
           <article className="col-span-6 p-4">
-            <div className="flex items-center justify-between flex-wrap rounded-sm drop-shadow-sm gap-x-4 gap-y-2 mb-4">
+            <div className="flex items-center justify-between flex-wrap rounded-sm drop-shadow-sm gap-x-4 gap-y-2 mb-1">
               <article>
                 <h1 className="text-2xl font-medium">{job.title}</h1>
                 <small className="text-gray-500">
@@ -50,6 +49,7 @@ export default async function JobDetailed({ params: { id } }) {
               {job.company.listings.length &&
                 job.company.listings
                   .filter((listing) => listing._id !== id)
+                  .sort(() => 0.5 - Math.random())
                   .slice(0, 2)
                   .map((listing) => <Job job={listing} key={listing._id} />)}
             </section>

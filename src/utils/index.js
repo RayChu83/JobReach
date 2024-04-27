@@ -1,6 +1,5 @@
 export const getTotalApplicantsMessage = (applicants) => {
   let text;
-  console.log(applicants);
   switch (true) {
     case applicants === 0:
       text = "Be the first to apply to this role!";

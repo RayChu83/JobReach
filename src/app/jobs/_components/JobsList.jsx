@@ -15,6 +15,7 @@ import { SearchBar } from "@/components/SearchBar";
 export function JobsList({ jobs }) {
   const [sortedJobs, setSortedJobs] = useState(jobs);
   const [sort, setSort] = useState("alphabetical");
+  console.log(jobs)
   switch (sort) {
     case "recent":
       sortByMostRecent(sortedJobs, "createdAt");
@@ -28,7 +29,7 @@ export function JobsList({ jobs }) {
   }
   return (
     <main className="max-w-[1280px] m-auto p-4">
-      <section className="flex items-center mb-2 gap-2 bg-[#F5F5F5] px-4 py-1 rounded-sm drop-shadow-sm w-[100%]">
+      <section className="flex items-center mb-4 gap-2 bg-[#F5F5F5] px-4 py-1 rounded-sm drop-shadow-sm w-[100%] hover:bg-[#F2F2F2]">
         <DropdownMenu>
           <DropdownMenuTrigger>
             <IoIosOptions className="text-xl" />

@@ -12,16 +12,3 @@ export async function GET(req) {
     return NextResponse.json({ message: "An error occurred, please try again!" }, { status: 500 });
   }
 }
-export async function POST(req) {
-  try {
-    const body = await req.json();
-    const company = await Companies.create({
-      name: body.name,
-      description: body.description,
-      listings: [],
-    });
-    return NextResponse.json({ message: "Success", company }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ message: "An error occurred, please try again!" }, { status: 500 });
-  }
-}

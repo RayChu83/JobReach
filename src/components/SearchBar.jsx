@@ -12,13 +12,13 @@ export function SearchBar({ data, update, fields }) {
     >
       <input
         type="text"
-        className="px-4 py-2 placeholder:text-black/80 outline-none bg-transparent w-[100%]"
+        className="px-4 py-1 placeholder:text-black/80 outline-none bg-transparent w-[100%]"
         placeholder="Search..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
       <button type="submit">
-        <IoSearch className="cursor-pointer text-xl active:text-[#1bbe17ff]" />
+        <IoSearch className="cursor-pointer text-xl text-[#1bbe17ff]" />
       </button>
     </form>
   );

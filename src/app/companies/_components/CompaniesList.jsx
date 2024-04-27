@@ -28,7 +28,7 @@ export default function CompaniesList({ companies }) {
   }
   return (
     <main className="max-w-[1280px] p-4 m-auto">
-      <section className="flex items-center mb-2 gap-2 bg-[#F5F5F5] w-[100%] px-4 py-1 rounded-sm drop-shadow-sm">
+      <section className="flex items-center mb-4 gap-2 bg-[#F5F5F5] w-[100%] px-4 py-1 rounded-sm drop-shadow-sm hover:bg-[#F2F2F2]">
         <DropdownMenu>
           <DropdownMenuTrigger className="ml-auto outline-none">
             <IoIosOptions className="text-xl"/>

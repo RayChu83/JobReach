@@ -1,7 +1,4 @@
 import React from "react";
-// import { Input } from "@/components/ui/input";
-// import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
 import { Apply } from "@/components/Apply";
 
@@ -24,18 +21,6 @@ const getCompany = async (id) => {
 
 export default async function CompanyDetail({ params: { id } }) {
   const company = await getCompany(id);
-
-  // const action = async (formdata) => {
-  //   "use server";
-  //   const [title, description] = [
-  //     formdata.get("title"),
-  //     formdata.get("description"),
-  //   ];
-  //   await fetch(`${process.env.NEXT_PUBLIC_URL}/api/jobs`, {
-  //     method: "post",
-  //     body: JSON.stringify({ title, description, company: company._id }),
-  //   });
-  // };
   return (
     <main className="max-w-[1280px] m-auto p-4 grid grid-cols-1 md:grid-cols-10 gap-4">
       {company && (
@@ -77,12 +62,6 @@ export default async function CompanyDetail({ params: { id } }) {
               {company.listings.length !== 1 && "s"} available
             </small>
             <p>{company.description}</p>
-            {/* <h1 className="text-2xl font-medium">Create Job:</h1>
-            <form action={action} className="flex flex-col gap-4">
-              <Input name="title" placeholder="Job Title" required/>
-              <Textarea name="description" placeholder="Description" required/>
-              <Button variant="cta">Create</Button>
-            </form> */}
           </section>
         </>
       )}
