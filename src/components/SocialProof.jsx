@@ -9,7 +9,7 @@ export default function SocialProof() {
       <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1p-4 gap-4">
         <article className="p-4 rounded-sm drop-shadow-sm flex flex-col gap-2">
           <Image
-            src="/headshot1.png"
+            src="/socialproof/headshot1.png"
             alt="headshot-1"
             width={100}
             height={100}
@@ -26,7 +26,7 @@ export default function SocialProof() {
         </article>
         <article className="p-4 rounded-sm drop-shadow-sm flex flex-col gap-2">
           <Image
-            src="/headshot2.png"
+            src="/socialproof/headshot2.png"
             alt="headshot-2"
             width={100}
             height={100}
@@ -42,7 +42,7 @@ export default function SocialProof() {
         </article>
         <article className="p-4 rounded-sm drop-shadow-sm flex flex-col gap-2">
           <Image
-            src="/headshot3.png"
+            src="/socialproof/headshot3.png"
             alt="headshot-3"
             width={100}
             height={100}
