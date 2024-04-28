@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "JobReach | Search over 100+ job opportunities",
-  description: "",
+  description:
+    "JobReach is a online platform where you can discover 100+ different jobs, filter through jobs to your specific requirements, and apply to those positions.",
 };
 
 export default function RootLayout({ children }) {

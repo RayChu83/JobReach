@@ -13,6 +13,10 @@ import { IoMdMail } from "react-icons/io";
 
 import Contactform from "@/app/contact/_components/Contactform";
 
+export const metadata = {
+  title : "Contact Us - JobReach"
+}
+
 export default function Contact() {
   return (
     <main className="p-4 max-w-[1280px] m-auto">

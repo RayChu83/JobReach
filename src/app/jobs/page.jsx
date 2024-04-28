@@ -1,6 +1,10 @@
 import React from "react";
 import { JobsList } from "@/app/jobs/_components/JobsList";
 
+export const metadata = {
+  title : "See Jobs - JobReach"
+}
+
 const getJobs = async () => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs`, {

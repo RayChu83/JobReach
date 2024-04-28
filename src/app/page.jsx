@@ -10,7 +10,9 @@ export default function Home() {
       <Hero />
       <PreviewJobs />
       <SocialProof />
-      <hr className="max-w-[1280px] m-auto"/>
+      <div className="max-w-[1280px] m-auto p-4">
+        <hr />
+      </div>
       <Footer />
     </main>
   );

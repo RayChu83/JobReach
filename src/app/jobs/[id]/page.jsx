@@ -5,6 +5,21 @@ import { getTotalApplicantsMessage } from "@/utils";
 import { Apply } from "@/components/Apply";
 import { FaLocationDot } from "react-icons/fa6";
 
+export async function generateMetadata({params : {id}}) {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs/${id}`, {
+    method: "get",
+    cache: "no-store",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  });
+  const resData = await res.json();
+  return {
+    title : `${resData.job?.title || "Unknown"} - JobReach`
+  }
+}
+
 const getJob = async (id) => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs/${id}`, {

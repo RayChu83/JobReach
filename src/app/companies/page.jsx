@@ -1,6 +1,10 @@
 import React from "react";
 import CompaniesList from "@/app/companies/_components/CompaniesList";
 
+export const metadata = {
+  title : "See Companies - JobReach"
+}
+
 const getCompanies = async () => {
   "use server";
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/companies`, {
