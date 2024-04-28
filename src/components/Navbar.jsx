@@ -14,7 +14,7 @@ export default function Navbar() {
         }`}
       >
         <Link
-          className="flex items-center self-start"
+          className="flex items-center self-start z-20"
           href="/"
           onClick={() => setMobileDropdownOpen(false)}
         >
@@ -35,12 +35,12 @@ export default function Navbar() {
         </Link>
         <HiMenuAlt3
           onClick={() => setMobileDropdownOpen((prev) => !prev)}
-          className="sm:hidden absolute top-[30px] right-[16px] text-3xl cursor-pointer"
+          className="sm:hidden absolute top-[30px] right-[16px] text-3xl cursor-pointer z-20"
         />
         <div
           className={`sm:flex ${
             mobileDropdownOpen
-              ? "flex flex-col h-[95vh] justify-center"
+              ? "flex flex-col h-[100vh] justify-center fixed w-full bg-white z-10"
               : "hidden"
           } items-center gap-6`}
         >
