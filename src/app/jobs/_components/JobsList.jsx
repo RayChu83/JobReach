@@ -15,7 +15,6 @@ import { SearchBar } from "@/components/SearchBar";
 export function JobsList({ jobs }) {
   const [sortedJobs, setSortedJobs] = useState(jobs);
   const [sort, setSort] = useState("alphabetical");
-  console.log(jobs)
   switch (sort) {
     case "recent":
       sortByMostRecent(sortedJobs, "createdAt");

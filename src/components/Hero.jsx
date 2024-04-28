@@ -16,7 +16,7 @@ export default function Hero() {
           , awaiting you!
         </h1>
         <Button variant="cta" asChild className="w-fit">
-          <Link href="/jobs">View Jobs</Link>
+          <Link href="/jobs">Explore Jobs</Link>
         </Button>
       </div>
       <div>

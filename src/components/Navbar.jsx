@@ -1,13 +1,14 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
-import React from "react";
-import { useRouter } from "next/router";
+import { HiMenuAlt3 } from "react-icons/hi";
+import React, { useState } from "react";
 
 export default function Navbar() {
+  const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   return (
-    <>
-      <nav className="flex justify-between p-4 max-w-[1280px] m-auto">
+<>
+      <nav className="flex justify-between p-4 max-w-[1280px] m-auto items-center">
         <Link className="flex items-center" href="/">
           <Image
             src="/logo-image.png"
@@ -24,7 +25,11 @@ export default function Navbar() {
             priority
           />
         </Link>
-        <div className="sm:flex items-center gap-6 hidden">
+        <HiMenuAlt3
+          onClick={() => setMobileDropdownOpen((prev) => !prev)}
+          className="sm:hidden block text-3xl cursor-pointer"
+        />
+        <div className="sm:flex hidden items-center gap-6">
           <Link href="/" className="hover:text-[#1bbe17ff]">
             Home
           </Link>
