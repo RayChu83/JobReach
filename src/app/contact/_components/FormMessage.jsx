@@ -1,6 +1,7 @@
-import React from 'react'
 import { BiSolidError } from "react-icons/bi";
 import { FaCheckCircle } from "react-icons/fa";
+
+import React from 'react'
 
 export default function FormMessage({status, message}) {
   return (

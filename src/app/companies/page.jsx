@@ -1,5 +1,6 @@
-import React from "react";
 import CompaniesList from "@/app/companies/_components/CompaniesList";
+
+import React from "react";
 
 export const metadata = {
   title : "See Companies - JobReach"

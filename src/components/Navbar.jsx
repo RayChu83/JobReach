@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { HiMenuAlt3 } from "react-icons/hi";
+
 import React, { useState } from "react";
 
 export default function Navbar() {

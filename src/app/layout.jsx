@@ -1,5 +1,5 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
+import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { ViewTransitions } from "next-view-transitions";
 

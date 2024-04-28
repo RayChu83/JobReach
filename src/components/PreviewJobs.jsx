@@ -1,7 +1,8 @@
-import React from "react";
 import { Link } from "next-view-transitions";
 import { Button } from "@/components/ui/button";
 import { Job } from "@/components/Job";
+
+import React from "react";
 
 const getJobs = async () => {
   "use server";

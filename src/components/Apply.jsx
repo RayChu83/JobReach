@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+
+import React, { useState } from "react";
 
 export function Apply({ id }) {
   const router = useRouter();

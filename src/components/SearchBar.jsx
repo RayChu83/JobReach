@@ -1,7 +1,8 @@
 "use client";
 import { filterBySearch } from "@/utils";
-import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
+
+import React, { useState } from "react";
 
 export function SearchBar({ data, update, fields }) {
   const [search, setSearch] = useState("");

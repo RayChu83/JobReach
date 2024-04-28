@@ -1,5 +1,7 @@
 "use client";
-
+import { Apply } from "@/components/Apply";
+import { SearchBar } from "@/components/SearchBar";
+import { Link } from "next-view-transitions";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,29 +9,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IoIosOptions } from "react-icons/io";
-import { Job } from "@/components/Job";
 import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
-import { SearchBar } from "@/components/SearchBar";
 
 import React, { useState } from "react";
 
-export function JobsList({ jobs }) {
-  const [sortedJobs, setSortedJobs] = useState(jobs);
+export function CompanyListings({ company }) {
+  const [sortedData, setSortedData] = useState(company.listings);
   const [sort, setSort] = useState("alphabetical");
   switch (sort) {
     case "recent":
-      sortByMostRecent(sortedJobs, "createdAt");
+      sortByMostRecent(sortedData, "createdAt");
       break;
     case "oldest":
-      sortByOldest(sortedJobs, "createdAt");
+      sortByOldest(sortedData, "createdAt");
       break;
     case "alphabetical":
-      sortAlphabetically(sortedJobs, "title");
+      sortAlphabetically(sortedData, "title");
       break;
   }
   return (
-    <main className="max-w-[1280px] m-auto p-4">
-      <section className="flex items-center mb-4 gap-2 bg-[#F5F5F5] px-4 py-1 rounded-sm drop-shadow-sm w-[100%] hover:bg-[#F2F2F2]">
+    <>
+      <section className="flex items-center gap-2 bg-[#F5F5F5] px-4 py-1 rounded-sm drop-shadow-sm w-[100%] hover:bg-[#F2F2F2]">
         <DropdownMenu>
           <DropdownMenuTrigger>
             <IoIosOptions className="text-xl" />
@@ -62,14 +62,39 @@ export function JobsList({ jobs }) {
           </DropdownMenuContent>
         </DropdownMenu>
         <SearchBar
-          data={jobs}
-          update={setSortedJobs}
+          data={company.listings}
+          update={setSortedData}
           fields={["title", "description"]}
         />
       </section>
-      <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
-        {sortedJobs && sortedJobs.map((job) => <Job job={job} key={job._id} />)}
-      </section>
-    </main>
+      {sortedData.length ? (
+        sortedData.map((listing) => (
+          <article
+            className="p-4 rounded-sm outline outline-gray-300 outline-1 drop-shadow-sm"
+            key={listing._id}
+          >
+            <Link
+              href={`/jobs/${listing._id}`}
+              className="text-xl font-medium hover:text-[#1bbe17ff]"
+            >
+              {listing.title}
+            </Link>
+            <br />
+            <Link
+              href={`/companies/${listing.company}`}
+              className="text-gray-500 text-sm"
+            >
+              {company.name}
+            </Link>
+            <p className="mb-2">{listing.description}</p>
+            <div className="flex justify-end">
+              <Apply id={listing._id} />
+            </div>
+          </article>
+        ))
+      ) : (
+        <p></p>
+      )}
+    </>
   );
 }

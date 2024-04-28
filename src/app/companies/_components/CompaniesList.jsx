@@ -1,8 +1,6 @@
 "use client";
 import { IoIosOptions } from "react-icons/io";
-import React, { useState } from "react";
 import { Company } from "@/app/companies/_components/Company";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,6 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
 import { SearchBar } from "@/components/SearchBar";
+
+import React, { useState } from "react";
 
 export default function CompaniesList({ companies }) {
   const [filteredCompanies, setFilteredCompanies] = useState(companies);

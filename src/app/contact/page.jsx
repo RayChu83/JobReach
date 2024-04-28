@@ -1,17 +1,15 @@
-import React from "react";
-
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
-
 import Contactform from "@/app/contact/_components/Contactform";
+
+import React from "react";
 
 export const metadata = {
   title : "Contact Us - JobReach"

@@ -1,9 +1,10 @@
-import React from "react";
 import { Link } from "next-view-transitions";
 import { Job } from "@/components/Job";
 import { getTotalApplicantsMessage } from "@/utils";
 import { Apply } from "@/components/Apply";
 import { FaLocationDot } from "react-icons/fa6";
+
+import React from "react";
 
 export async function generateMetadata({params : {id}}) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs/${id}`, {

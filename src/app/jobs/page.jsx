@@ -1,5 +1,6 @@
-import React from "react";
 import { JobsList } from "@/app/jobs/_components/JobsList";
+
+import React from "react";
 
 export const metadata = {
   title : "See Jobs - JobReach"

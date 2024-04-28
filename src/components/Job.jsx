@@ -1,6 +1,7 @@
-import React from "react";
 import { Link } from "next-view-transitions";
 import { Button } from '@/components/ui/button';
+
+import React from "react";
 
 export function Job({ job }) {
   return (
