@@ -7,9 +7,17 @@ import React, { useState } from "react";
 export default function Navbar() {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   return (
-<>
-      <nav className="flex justify-between p-4 max-w-[1280px] m-auto items-center">
-        <Link className="flex items-center" href="/">
+    <>
+      <nav
+        className={`flex justify-between p-4 max-w-[1280px] m-auto items-center ${
+          mobileDropdownOpen && "flex-col"
+        }`}
+      >
+        <Link
+          className="flex items-center self-start"
+          href="/"
+          onClick={() => setMobileDropdownOpen(false)}
+        >
           <Image
             src="/logo-image.png"
             width={55}
@@ -27,19 +35,41 @@ export default function Navbar() {
         </Link>
         <HiMenuAlt3
           onClick={() => setMobileDropdownOpen((prev) => !prev)}
-          className="sm:hidden block text-3xl cursor-pointer"
+          className="sm:hidden absolute top-[30px] right-[16px] text-3xl cursor-pointer"
         />
-        <div className="sm:flex hidden items-center gap-6">
-          <Link href="/" className="hover:text-[#1bbe17ff]">
+        <div
+          className={`sm:flex ${
+            mobileDropdownOpen
+              ? "flex flex-col h-[95vh] justify-center"
+              : "hidden"
+          } items-center gap-6`}
+        >
+          <Link
+            href="/"
+            className="hover:text-[#1bbe17ff]"
+            onClick={() => setMobileDropdownOpen(false)}
+          >
             Home
           </Link>
-          <Link href="/jobs" className="hover:text-[#1bbe17ff]">
+          <Link
+            href="/jobs"
+            className="hover:text-[#1bbe17ff]"
+            onClick={() => setMobileDropdownOpen(false)}
+          >
             Jobs
           </Link>
-          <Link href="/companies" className="hover:text-[#1bbe17ff]">
+          <Link
+            href="/companies"
+            className="hover:text-[#1bbe17ff]"
+            onClick={() => setMobileDropdownOpen(false)}
+          >
             Companies
           </Link>
-          <Link href="/contact" className="hover:text-[#1bbe17ff]">
+          <Link
+            href="/contact"
+            className="hover:text-[#1bbe17ff]"
+            onClick={() => setMobileDropdownOpen(false)}
+          >
             Contact
           </Link>
         </div>

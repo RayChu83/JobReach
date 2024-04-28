@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <PreviewJobs />
       <SocialProof />
-      <hr/>
+      <hr className="max-w-[1280px] m-auto"/>
       <Footer />
     </main>
   );
