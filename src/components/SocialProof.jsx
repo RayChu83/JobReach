@@ -7,7 +7,7 @@ export default function SocialProof() {
     <section className="max-w-[1280px] m-auto p-4">
       <h1 className="text-3xl font-medium">What our users have to say:</h1>
       <br />
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1p-4 gap-4">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1p-4 gap-4 items-start">
         <article className="p-4 rounded-sm drop-shadow-sm flex flex-col gap-2">
           <Image
             src="/socialproof/headshot1.png"

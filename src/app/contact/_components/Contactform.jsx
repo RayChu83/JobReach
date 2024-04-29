@@ -3,34 +3,40 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import FormMessage from "@/app/contact/_components/FormMessage";
+import emailjs from "@emailjs/browser";
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 export default function Contactform() {
   const [formMessage, setFormMessage] = useState(null);
-  const action = async (formdata) => {
-    setFormMessage(null);
-    const [name, email, message] = [
-      formdata.get("name"),
-      formdata.get("email"),
-      formdata.get("message"),
-    ];
-    const res = await fetch(`/api/contact`, {
-      method: "post",
-      body: JSON.stringify({ name, email, message }),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-    const [status, json] = await Promise.all([
-      await res.status,
-      await res.json(),
-    ]);
-    setFormMessage({ status, ...json });
+  const form = useRef();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        form.current,
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+        }
+      )
+      .then(() => {
+        setFormMessage({ status: 200, message: "Message Sent" });
+      }),
+      (error) => {
+        setFormMessage({
+          status: 500,
+          message: "An error occurred, please try again!",
+        });
+      };
   };
   return (
-    <form action={action} className="flex flex-col gap-y-4 w-full">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-y-4 w-full"
+      ref={form}
+    >
       {formMessage && (
         <FormMessage
           status={formMessage.status}
