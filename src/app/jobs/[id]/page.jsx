@@ -6,7 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 
 import React from "react";
 
-export async function generateMetadata({params : {id}}) {
+export async function generateMetadata({ params: { id } }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs/${id}`, {
     method: "get",
     cache: "no-store",
@@ -17,8 +17,8 @@ export async function generateMetadata({params : {id}}) {
   });
   const resData = await res.json();
   return {
-    title : `${resData.job?.title || "Unknown"} - JobReach`
-  }
+    title: `${resData.job?.title || "Unknown"} - JobReach`,
+  };
 }
 
 const getJob = async (id) => {
@@ -70,7 +70,7 @@ export default async function JobDetailed({ params: { id } }) {
                   .map((listing) => <Job job={listing} key={listing._id} />)}
             </section>
           </article>
-          <article className="col-span-4 p-4 sticky top-[108px] h-fit order-1 md:block hidden bg-[#F5F5F5] rounded-sm drop-shadow-sm">
+          <article className="col-span-4 p-4 sticky top-[96px] h-fit order-1 md:block hidden bg-[#F5F5F5] rounded-sm drop-shadow-sm">
             <Link
               href={`/companies/${job.company._id}`}
               className="text-2xl hover:text-[#1bbe17ff]"

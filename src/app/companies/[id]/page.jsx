@@ -1,5 +1,5 @@
 import { FaLocationDot } from "react-icons/fa6";
-import {CompanyListings} from "@/app/companies/[id]/_components/CompanyListings"
+import { CompanyListings } from "@/app/companies/[id]/_components/CompanyListings";
 
 import React from "react";
 
@@ -41,9 +41,9 @@ export default async function CompanyDetail({ params: { id } }) {
       {company && (
         <>
           <section className="md:col-span-6 flex flex-col gap-4">
-            <CompanyListings company={company}/>
+            <CompanyListings company={company} />
           </section>
-          <article className="md:col-span-4 block md:sticky top-[108px] p-4 h-fit bg-[#F5F5F5] rounded-sm drop-shadow-sm">
+          <article className="md:col-span-4 block md:sticky top-[96px] p-4 h-fit bg-[#F5F5F5] rounded-sm drop-shadow-sm">
             <h1 className="text-2xl font-medium">{company.name}</h1>
             <small className="text-gray-500 flex items-center gap-1">
               <FaLocationDot />
