@@ -43,7 +43,7 @@ export default function Contactform() {
           message={formMessage.message}
         />
       )}
-      <Input placeholder="Your Name" name="name" required />
+      <Input placeholder="Name" name="name" required />
       <Input type="email" placeholder="Email" name="email" required />
       <Textarea placeholder="Message" rows="3" name="message" required />
       <Button type="submit" variant="cta">
