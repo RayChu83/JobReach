@@ -5,13 +5,18 @@ import { Link } from "next-view-transitions";
 import React from "react";
 
 export default function Login() {
+  const handleAction = async (formData) => {
+    "use server";
+    const [email, password] = [formData.get("email"), formData.get("password")];
+    console.log(email, password);
+  };
   return (
     <main className="max-w-[1280px] m-auto p-4">
       <h1 className="sm:text-4xl text-3xl font-semibold">
         Login to an existing account
       </h1>
       <br />
-      <form action="" className="flex flex-col">
+      <form action={handleAction} className="flex flex-col">
         <Input
           placeholder="Email"
           type="email"
