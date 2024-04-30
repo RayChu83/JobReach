@@ -12,8 +12,8 @@ import Contactform from "@/app/contact/_components/Contactform";
 import React from "react";
 
 export const metadata = {
-  title : "Contact Us - JobReach"
-}
+  title: "Contact Us - JobReach",
+};
 
 export default function Contact() {
   return (
@@ -24,19 +24,22 @@ export default function Contact() {
         <AccordionItem value="item-1">
           <AccordionTrigger>Is JobReach free-to-use?</AccordionTrigger>
           <AccordionContent>
-            Yes, JobReach is completely free to use. Apply to as many positions as you&apos;d like.
+            Yes, JobReach is completely free to use. Apply to as many positions
+            as you&apos;d like.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
           <AccordionTrigger>How does JobReach work?</AccordionTrigger>
           <AccordionContent>
-            Employers or Organizations looking to hire post job listings, and based on your interests, you may apply for these positions.
+            Employers or Organizations looking to hire post job listings, and
+            based on your interests, you may apply for these positions.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
           <AccordionTrigger>Are there any remote positions?</AccordionTrigger>
           <AccordionContent>
-            Yes, but not all positions are remote; some may be hybrid or in person.
+            Yes, but not all positions are remote; some may be hybrid or in
+            person.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -45,15 +48,15 @@ export default function Contact() {
       <br />
       <section className="flex justify-between gap-8 flex-col sm:flex-row">
         <Contactform />
-        <div className="w-full">
-          <article className="flex text-lg items-center gap-4 flex-wrap">
+        <div className="w-full mt-[18px]">
+          <article className="flex items-center gap-4 flex-wrap">
             <FaLocationDot />
             New York, Manhattan
           </article>
-          <article className="flex text-lg items-center gap-4 flex-wrap">
+          <article className="flex items-center gap-4 flex-wrap">
             <FaPhoneAlt /> 123-456-7890
           </article>
-          <article className="flex text-lg items-center gap-4 flex-wrap">
+          <article className="flex items-center gap-4 flex-wrap">
             <IoMdMail />
             contact@jobreach.com
           </article>

@@ -2,7 +2,8 @@
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import FormMessage from "@/app/contact/_components/FormMessage";
+import FormMessage from "@/components/FormMessage";
+import { Label } from "@/components/ui/label";
 import emailjs from "@emailjs/browser";
 
 import React, { useState, useRef } from "react";
@@ -43,9 +44,36 @@ export default function Contactform() {
           message={formMessage.message}
         />
       )}
-      <Input placeholder="Name" name="name" required />
-      <Input type="email" placeholder="Email" name="email" required />
-      <Textarea placeholder="Message" rows="3" name="message" required />
+      <article>
+        <Label htmlFor="name" className="ml-1 cursor-pointer">
+          Name:
+        </Label>
+        <Input placeholder="Your Name" id="name" name="name" required />
+      </article>
+      <article>
+        <Label htmlFor="email" className="ml-1 cursor-pointer">
+          Email:
+        </Label>
+        <Input
+          placeholder="Your Email"
+          id="email"
+          type="email"
+          name="email"
+          required
+        />
+      </article>
+      <article>
+        <Label htmlFor="message" className="ml-1 cursor-pointer">
+          Message:
+        </Label>
+        <Textarea
+          placeholder="Your Message"
+          id="message"
+          rows="3"
+          name="message"
+          required
+        />
+      </article>
       <Button type="submit" variant="cta">
         Send
       </Button>

@@ -3,11 +3,27 @@ import mongoose, { Schema } from "mongoose";
 mongoose.connect(process.env.MONGODB_URI);
 mongoose.Promise = global.Promise;
 
+const userSchema = new Schema(
+  {
+    name: String,
+    description: String,
+    applications: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "jobs",
+      },
+    ],
+    email: String,
+    password: String,
+  },
+  { timestamps: true }
+);
+
 const jobSchema = new Schema(
   {
     title: String,
     description: String,
-    applied : Number,
+    applied: Number,
     company: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "companys",
@@ -31,6 +47,8 @@ const companiesSchema = new Schema(
     timestamps: true,
   }
 );
-
+export const Users =
+  mongoose.models.users || mongoose.model("users", userSchema);
 export const Jobs = mongoose.models.jobs || mongoose.model("jobs", jobSchema);
-export const Companies = mongoose.models.companies || mongoose.model("companies", companiesSchema)
+export const Companies =
+  mongoose.models.companies || mongoose.model("companies", companiesSchema);
