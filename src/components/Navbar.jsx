@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { CgProfile } from "react-icons/cg";
 
 import React, { useState } from "react";
 
@@ -65,6 +66,13 @@ export default function Navbar() {
             onClick={() => setMobileDropdownOpen(false)}
           >
             Companies
+          </Link>
+          <Link
+            href="/profile"
+            className="text-[#1bbe17ff] text-3xl"
+            onClick={() => setMobileDropdownOpen(false)}
+          >
+            <CgProfile />
           </Link>
         </div>
       </nav>
