@@ -4,6 +4,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { Button } from "@/components/ui/button";
+import { FaQuestionCircle } from "react-icons/fa";
 
 import React from "react";
 
@@ -50,6 +51,10 @@ export default function Footer() {
         <article className="flex items-center gap-4 flex-wrap">
           <IoMdMail />
           contact@jobreach.com
+        </article>
+        <article className="flex items-center gap-4 flex-wrap">
+          <FaQuestionCircle />
+          <Link href="/contact">Frequently asked questions</Link>
         </article>
       </div>
     </footer>

@@ -66,13 +66,6 @@ export default function Navbar() {
           >
             Companies
           </Link>
-          <Link
-            href="/contact"
-            className="hover:text-[#1bbe17ff]"
-            onClick={() => setMobileDropdownOpen(false)}
-          >
-            Contact
-          </Link>
         </div>
       </nav>
     </>
