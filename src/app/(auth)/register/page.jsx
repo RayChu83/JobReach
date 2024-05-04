@@ -51,7 +51,7 @@ export default function Register() {
   return (
     <main className="max-w-[1280px] m-auto p-4">
       <h1 className="sm:text-4xl text-3xl font-semibold">
-        Register for an account
+        Register for an account:
       </h1>
       <br />
       <form action={handleAction} className="flex flex-col">

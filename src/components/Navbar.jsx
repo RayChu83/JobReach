@@ -5,8 +5,10 @@ import { HiMenuAlt3 } from "react-icons/hi";
 import { CgProfile } from "react-icons/cg";
 
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname()
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   return (
     <>
@@ -48,21 +50,21 @@ export default function Navbar() {
         >
           <Link
             href="/"
-            className="hover:text-[#1bbe17ff]"
+            className={`hover:text-[#1bbe17ff] ${pathname === "/" && "underline"}`}
             onClick={() => setMobileDropdownOpen(false)}
           >
             Home
           </Link>
           <Link
             href="/jobs"
-            className="hover:text-[#1bbe17ff]"
+            className={`hover:text-[#1bbe17ff] ${pathname === "/jobs" && "underline"}`}
             onClick={() => setMobileDropdownOpen(false)}
           >
             Jobs
           </Link>
           <Link
             href="/companies"
-            className="hover:text-[#1bbe17ff]"
+            className={`hover:text-[#1bbe17ff] ${pathname === "/companies" && "underline"}`}
             onClick={() => setMobileDropdownOpen(false)}
           >
             Companies
