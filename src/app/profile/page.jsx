@@ -1,10 +1,15 @@
-import { getServerSession } from "next-auth";
+import { getUser } from "./_actions/getUser";
 
 import React from "react";
+import { SignOutButton } from "./_components/SignOutButton";
 
 export default async function Profile() {
-  const session = await getServerSession();
+  const user = await getUser();
   return (
-    <main className="max-w-[1280px] m-auto p-4">{JSON.stringify(session)}</main>
+    <main className="max-w-[1280px] m-auto p-4">
+      <SignOutButton />
+      <br />
+      {JSON.stringify(user)}
+    </main>
   );
 }

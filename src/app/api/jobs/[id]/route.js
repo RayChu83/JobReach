@@ -5,11 +5,11 @@ export async function GET(req, { params: { id } }) {
   try {
     const job = await Jobs.findById(id).populate({
       path: "company",
-      model : Companies,
-      populate : {
-        path : "listings",
-        model : Jobs
-      }
+      model: Companies,
+      populate: {
+        path: "listings",
+        model: Jobs,
+      },
     });
     return NextResponse.json({ message: "Success", job }, { status: 200 });
   } catch (error) {

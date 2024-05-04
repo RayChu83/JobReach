@@ -3,7 +3,7 @@ import FormMessage from "@/components/FormMessage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn, useSession } from "next-auth/react";
+import { signIn} from "next-auth/react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 
@@ -11,16 +11,14 @@ import React, { useState } from "react";
 
 export default function Login() {
   const router = useRouter();
-  const session = useSession();
-  if (session.data) {
-    router.back();
-  }
-
   const [formMessage, setFormMessage] = useState(null);
   const [pending, setPending] = useState(false);
   const handleAction = async (formData) => {
     setFormMessage(null);
-    const [email, password] = [formData.get("email"), formData.get("password")];
+    const [email, password] = [
+      formData.get("email").toLowerCase(),
+      formData.get("password"),
+    ];
     if (!email || !password) {
       setFormMessage({ status: 500, message: "All fields required." });
       return;
@@ -57,7 +55,6 @@ export default function Login() {
     setPending(false);
   };
   return (
-    !session.data && 
     <main className="max-w-[1280px] m-auto p-4">
       <h1 className="sm:text-4xl text-3xl font-semibold">
         Login to an existing account:
