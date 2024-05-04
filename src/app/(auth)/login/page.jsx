@@ -3,14 +3,13 @@ import FormMessage from "@/components/FormMessage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 
 import React, { useState } from "react";
 
 export default function Login() {
-  const { update } = useSession();
   const router = useRouter();
   const [formMessage, setFormMessage] = useState(null);
   const [pending, setPending] = useState(false);
@@ -43,8 +42,8 @@ export default function Login() {
           status: 200,
           message: "Success",
         });
-        update();
-        router.push("/");
+        router.replace("/");
+        router.refresh()
       }
     } catch (error) {
       setFormMessage({
