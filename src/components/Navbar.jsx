@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState(false);
   return (
     <>
@@ -50,21 +50,27 @@ export default function Navbar() {
         >
           <Link
             href="/"
-            className={`hover:text-[#1bbe17ff] ${pathname === "/" && "underline"}`}
+            className={`hover:text-[#1bbe17ff] ${
+              pathname === "/" && "font-semibold"
+            }`}
             onClick={() => setMobileDropdownOpen(false)}
           >
             Home
           </Link>
           <Link
             href="/jobs"
-            className={`hover:text-[#1bbe17ff] ${pathname === "/jobs" && "underline"}`}
+            className={`hover:text-[#1bbe17ff] ${
+              pathname === "/jobs" && "font-semibold"
+            }`}
             onClick={() => setMobileDropdownOpen(false)}
           >
             Jobs
           </Link>
           <Link
             href="/companies"
-            className={`hover:text-[#1bbe17ff] ${pathname === "/companies" && "underline"}`}
+            className={`hover:text-[#1bbe17ff] ${
+              pathname === "/companies" && "font-semibold"
+            }`}
             onClick={() => setMobileDropdownOpen(false)}
           >
             Companies

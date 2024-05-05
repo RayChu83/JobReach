@@ -88,7 +88,7 @@ export function CompanyListings({ company }) {
             </Link>
             <p className="mb-2">{listing.description}</p>
             <div className="flex justify-end">
-              <Apply id={listing._id} />
+              <Apply id={listing._id} appliedUsers={listing.applied} />
             </div>
           </article>
         ))

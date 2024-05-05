@@ -23,10 +23,15 @@ const jobSchema = new Schema(
   {
     title: String,
     description: String,
-    applied: Number,
+    applied: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "users",
+      },
+    ],
     company: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "companys",
+      ref: "companies",
     },
   },
   { timestamps: true }
