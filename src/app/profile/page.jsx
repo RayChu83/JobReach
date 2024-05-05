@@ -1,7 +1,7 @@
-import { getUser } from "./_actions/getUser";
+import { getUser } from "@/app/profile/_actions/getUser";
 
 import React from "react";
-import { SignOutButton } from "./_components/SignOutButton";
+import { SignOutButton } from "@/app/profile/_components/SignOutButton";
 
 export default async function Profile() {
   const user = await getUser();
