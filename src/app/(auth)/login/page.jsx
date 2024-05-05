@@ -6,12 +6,14 @@ import { Label } from "@/components/ui/label";
 import { signIn } from "next-auth/react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
+import { FaClock } from "react-icons/fa6";
 
 import React, { useState } from "react";
 
 export default function Login() {
   const router = useRouter();
   const [formMessage, setFormMessage] = useState(null);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [pending, setPending] = useState(false);
   const handleAction = async (formData) => {
     setFormMessage(null);
@@ -31,29 +33,54 @@ export default function Login() {
         redirect: false,
       });
       if (res.error) {
+        setPending(false);
         setFormMessage({
           status: 500,
           message: "Invalid email or password.",
         });
-        setPending(false);
         return;
       } else {
+        setPending(false);
         setFormMessage({
           status: 200,
-          message: "Success",
+          message: "Success!",
         });
         router.replace("/");
-        router.refresh()
+        router.refresh();
       }
     } catch (error) {
       setFormMessage({
         status: 500,
-        message: "Something went wrong, Please try again.",
+        message: "Something went wrong, Please try again!",
       });
       setPending(false);
       return;
     }
     setPending(false);
+  };
+  const handleDemo = async () => {
+    setFormMessage(null);
+    setPending(true);
+    const res = await signIn("credentials", {
+      email: process.env.NEXT_PUBLIC_DEMO_EMAIL,
+      password: process.env.NEXT_PUBLIC_DEMO_PASSWORD,
+      redirect: false,
+    });
+    if (res.error) {
+      setFormMessage({
+        status: 500,
+        message: "Something went wrong, Please try again!",
+      });
+      setPending(false);
+    } else {
+      setPending(false);
+      setFormMessage({
+        status: 200,
+        message: "Launching demo user...",
+      });
+      router.replace("/");
+      router.refresh();
+    }
   };
   return (
     <main className="max-w-[1280px] m-auto p-4">
@@ -61,16 +88,16 @@ export default function Login() {
         Login to an existing account:
       </h1>
       <br />
-      <form action={handleAction} className="flex flex-col">
+      <form action={handleAction} className="flex flex-col gap-2">
         {formMessage && (
-          <span className="mb-4">
+          <span>
             <FormMessage
               status={formMessage.status}
               message={formMessage.message}
             />
           </span>
         )}
-        <article className="mb-4">
+        <article>
           <Label htmlFor="email" className="ml-1 cursor-pointer">
             Email:
           </Label>
@@ -82,19 +109,39 @@ export default function Login() {
             required
           />
         </article>
-        <article className="mb-2">
+        <article>
           <Label htmlFor="password" className="ml-1 cursor-pointer">
             Password:
           </Label>
           <Input
             id="password"
             placeholder="Your Password"
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             name="password"
             required
           />
         </article>
-        <small className="mb-2 ml-1">
+        <small
+          className="ml-1 cursor-pointer text-gray-500"
+          onClick={() => {
+            setPasswordVisible((prev) => !prev);
+          }}
+        >
+          {passwordVisible ? "Hide Password" : "Show Password"}
+        </small>
+        <Button
+          className="flex items-center gap-2"
+          onClick={handleDemo}
+          type="button"
+          disabled={pending}
+        >
+          <FaClock />
+          Try with Demo
+        </Button>
+        <Button variant="cta" disabled={pending}>
+          {pending ? "Logging In..." : "Log In"}
+        </Button>
+        <small className="ml-1">
           Don&apos;t have an account,{" "}
           <Link
             href="/register"
@@ -103,9 +150,6 @@ export default function Login() {
             Register
           </Link>
         </small>
-        <Button className="w-fit" variant="cta" disabled={pending}>
-          {pending ? "Logging In..." : "Log In"}
-        </Button>
       </form>
     </main>
   );

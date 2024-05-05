@@ -10,8 +10,9 @@ import React, { useState } from "react";
 
 export default function Register() {
   const router = useRouter();
-  const [pending, setPending] = useState(false);
   const [formMessage, setFormMessage] = useState(null);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [pending, setPending] = useState(false);
   const handleAction = async (formData) => {
     const [name, email, password] = [
       formData.get("name"),
@@ -55,22 +56,22 @@ export default function Register() {
         Register for an account:
       </h1>
       <br />
-      <form action={handleAction} className="flex flex-col">
+      <form action={handleAction} className="flex flex-col gap-2">
         {formMessage && (
-          <span className="mb-4">
+          <span>
             <FormMessage
               status={formMessage.status}
               message={formMessage.message}
             />
           </span>
         )}
-        <article className="mb-4">
+        <article>
           <Label htmlFor="name" className="ml-1 cursor-pointer">
             Name:
           </Label>
           <Input placeholder="Your Name" id="name" name="name" required />
         </article>
-        <article className="mb-4">
+        <article>
           <Label htmlFor="email" className="ml-1 cursor-pointer">
             Email:
           </Label>
@@ -82,7 +83,7 @@ export default function Register() {
             required
           />
         </article>
-        <article className="mb-2">
+        <article>
           <Label htmlFor="password" className="ml-1 cursor-pointer">
             Password:
           </Label>
@@ -90,12 +91,23 @@ export default function Register() {
             placeholder="Your Password"
             id="password"
             name="password"
-            type="password"
+            type={passwordVisible ? "text" : "password"}
             required
             minLength="8"
           />
         </article>
-        <small className="mb-2 ml-1">
+        <small
+          className="ml-1 cursor-pointer text-gray-500"
+          onClick={() => {
+            setPasswordVisible((prev) => !prev);
+          }}
+        >
+          {passwordVisible ? "Hide Password" : "Show Password"}
+        </small>
+        <Button variant="cta" disabled={pending}>
+          {pending ? "Registering..." : "Register"}
+        </Button>
+        <small className="ml-1">
           Already have an account,{" "}
           <Link
             href="/login"
@@ -104,9 +116,6 @@ export default function Register() {
             Login
           </Link>{" "}
         </small>
-        <Button className="w-fit" variant="cta" disabled={pending}>
-          {pending ? "Registering..." : "Register"}
-        </Button>
       </form>
     </main>
   );
