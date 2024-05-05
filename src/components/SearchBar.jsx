@@ -2,21 +2,23 @@
 import { filterBySearch } from "@/utils";
 import { IoSearch } from "react-icons/io5";
 
-import React, { useState } from "react";
+import React from "react";
 
-export function SearchBar({ data, update, fields }) {
-  const [search, setSearch] = useState("");
+export function SearchBar({ data, update, fields, placeholder}) {
   return (
     <form
       className="flex items-center gap-2 w-[100%]"
-      action={() => filterBySearch(data, update, search, fields)}
+      action={(formData) => {
+        const search = formData.get("search");
+        filterBySearch(data, update, search, fields);
+      }}
     >
       <input
         type="text"
+        name="search"
         className="px-4 py-1 placeholder:text-black/80 outline-none bg-transparent w-[100%]"
-        placeholder="Search..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        placeholder={placeholder}
+        onChange={(e) => filterBySearch(data, update, e.target.value, fields)}
       />
       <button type="submit">
         <IoSearch className="cursor-pointer text-xl" />

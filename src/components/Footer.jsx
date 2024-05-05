@@ -11,7 +11,7 @@ import React from "react";
 export default function Footer() {
   return (
     <footer className="flex flex-col md:grid grid-cols-2 gap-4 max-w-[1280px] m-auto px-4 py-8 items-center">
-      <div className="w-full">
+      <div className="w-full p-4">
         <Link className="flex items-center w-fit" href="/">
           <Image
             src="/logo-image.png"
@@ -40,7 +40,7 @@ export default function Footer() {
           <Link href="/jobs">See Opportunities</Link>
         </Button>
       </div>
-      <div className="w-full">
+      <div className="w-full p-4">
         <article className="flex items-center gap-4 flex-wrap">
           <FaLocationDot />
           New York, Manhattan

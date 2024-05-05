@@ -65,6 +65,7 @@ export function JobsList({ jobs }) {
           data={jobs}
           update={setSortedJobs}
           fields={["title", "description"]}
+          placeholder="Search Jobs..."
         />
       </section>
       <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">

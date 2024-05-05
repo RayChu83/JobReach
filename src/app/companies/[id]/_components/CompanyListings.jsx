@@ -65,6 +65,7 @@ export function CompanyListings({ company }) {
           data={company.listings}
           update={setSortedData}
           fields={["title", "description"]}
+          placeholder="Search Jobs..."
         />
       </section>
       {sortedData.length ? (
