@@ -47,27 +47,26 @@ export default function EditUserForm({ name, email, description, id }) {
     });
   };
   return (
-    <form className="grid gap-4" action={handleAction}>
+    <form className="flex flex-col gap-2" action={handleAction}>
       {formMessage && (
         <FormMessage
           status={formMessage.status}
           message={formMessage.message}
         />
       )}
-      <div className="grid grid-cols-4 items-center gap-4 py-2">
-        <Label htmlFor="name" className="text-right">
+      <div className="flex flex-col gap-1 py-2">
+        <Label htmlFor="name" className="w-fit ml-1">
           Name:
         </Label>
         <Input
           id="name"
           name="name"
           defaultValue={name}
-          className="col-span-3"
           required
         />
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="username" className="text-right">
+      <div className="flex flex-col gap-1 py-2">
+        <Label htmlFor="username" className="w-fit ml-1">
           Email:
         </Label>
         <Input
@@ -76,18 +75,17 @@ export default function EditUserForm({ name, email, description, id }) {
           value={email}
           type="text"
           readOnly
-          className="col-span-3 text-gray-500 cursor-not-allowed"
+          className="text-gray-500 cursor-not-allowed"
         />
       </div>
-      <div className="grid grid-cols-4 items-center gap-4">
-        <Label htmlFor="description" className="text-right">
+      <div className="flex flex-col gap-1 py-2">
+        <Label htmlFor="description" className="w-fit ml-1">
           Description:
         </Label>
         <Textarea
           id="description"
           name="description"
           defaultValue={description}
-          className="col-span-3"
           rows="5"
         />
       </div>
