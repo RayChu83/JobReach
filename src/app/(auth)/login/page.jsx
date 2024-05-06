@@ -8,14 +8,14 @@ import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 import { FaClock } from "react-icons/fa6";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 
 export default function Login() {
   const router = useRouter();
   const [formMessage, setFormMessage] = useState(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [pending, setPending] = useState(false);
-  const handleAction = async (formData) => {
+  const [isPending, startTransition] = useTransition();
+  const handleAction = (formData) => {
     setFormMessage(null);
     const [email, password] = [
       formData.get("email").toLowerCase(),
@@ -25,62 +25,59 @@ export default function Login() {
       setFormMessage({ status: 500, message: "All fields required." });
       return;
     }
-    setPending(true);
-    try {
+    startTransition(async () => {
+      try {
+        const res = await signIn("credentials", {
+          email,
+          password,
+          redirect: false,
+        });
+        if (res.error) {
+          setFormMessage({
+            status: 500,
+            message: "Invalid email or password.",
+          });
+          return;
+        } else {
+          setFormMessage({
+            status: 200,
+            message: "Success!",
+          });
+          router.replace("/");
+          router.refresh();
+        }
+      } catch (error) {
+        setFormMessage({
+          status: 500,
+          message: "Something went wrong, Please try again!",
+        });
+        return;
+      }
+    });
+  };
+  const handleDemo = () => {
+    setFormMessage(null);
+    startTransition(async () => {
       const res = await signIn("credentials", {
-        email,
-        password,
+        email: process.env.NEXT_PUBLIC_DEMO_EMAIL,
+        password: process.env.NEXT_PUBLIC_DEMO_PASSWORD,
         redirect: false,
       });
       if (res.error) {
-        setPending(false);
         setFormMessage({
           status: 500,
-          message: "Invalid email or password.",
+          message: "Something went wrong, Please try again!",
         });
-        return;
+        return
       } else {
-        setPending(false);
         setFormMessage({
           status: 200,
-          message: "Success!",
+          message: "Launching demo user...",
         });
         router.replace("/");
         router.refresh();
       }
-    } catch (error) {
-      setFormMessage({
-        status: 500,
-        message: "Something went wrong, Please try again!",
-      });
-      setPending(false);
-      return;
-    }
-    setPending(false);
-  };
-  const handleDemo = async () => {
-    setFormMessage(null);
-    setPending(true);
-    const res = await signIn("credentials", {
-      email: process.env.NEXT_PUBLIC_DEMO_EMAIL,
-      password: process.env.NEXT_PUBLIC_DEMO_PASSWORD,
-      redirect: false,
-    });
-    if (res.error) {
-      setFormMessage({
-        status: 500,
-        message: "Something went wrong, Please try again!",
-      });
-      setPending(false);
-    } else {
-      setPending(false);
-      setFormMessage({
-        status: 200,
-        message: "Launching demo user...",
-      });
-      router.replace("/");
-      router.refresh();
-    }
+    })
   };
   return (
     <main className="max-w-[1280px] m-auto p-4">
@@ -133,13 +130,13 @@ export default function Login() {
           className="flex items-center gap-2"
           onClick={handleDemo}
           type="button"
-          disabled={pending}
+          disabled={isPending}
         >
           <FaClock />
           Try with Demo
         </Button>
-        <Button variant="cta" disabled={pending}>
-          {pending ? "Logging In..." : "Log In"}
+        <Button variant="cta" disabled={isPending}>
+          {isPending ? "Logging In..." : "Log In"}
         </Button>
         <small className="ml-1">
           Don&apos;t have an account,{" "}

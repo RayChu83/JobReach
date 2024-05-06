@@ -6,14 +6,14 @@ import { Label } from "@/components/ui/label";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 
-import React, { useState } from "react";
+import React, { useState, useTransition } from "react";
 
 export default function Register() {
   const router = useRouter();
   const [formMessage, setFormMessage] = useState(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [pending, setPending] = useState(false);
-  const handleAction = async (formData) => {
+  const [isPending, startTransition] = useTransition();
+  const handleAction = (formData) => {
     const [name, email, password] = [
       formData.get("name"),
       formData.get("email").toLowerCase(),
@@ -23,32 +23,33 @@ export default function Register() {
       setFormMessage({ status: 500, message: "All fields required." });
       return;
     }
-    setPending(true);
-    const res = await fetch("api/register", {
-      method: "post",
-      cache: "no-store",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
+    startTransition(async () => {
+      const res = await fetch("api/register", {
+        method: "post",
+        cache: "no-store",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setFormMessage({
+          status: 500,
+          message: data.message,
+        });
+        return;
+      }
+      if (res.ok) {
+        setFormMessage({
+          status: 200,
+          message: data.message,
+        });
+        router.replace("/login");
+        router.refresh();
+      }
     });
-    setPending(false);
-    const data = await res.json();
-    if (!res.ok) {
-      setFormMessage({
-        status: 500,
-        message: data.message,
-      });
-    }
-    if (res.ok) {
-      setFormMessage({
-        status: 200,
-        message: data.message,
-      });
-      router.replace("/login");
-      router.refresh();
-    }
   };
   return (
     <main className="max-w-[1280px] m-auto p-4">
@@ -104,8 +105,8 @@ export default function Register() {
         >
           {passwordVisible ? "Hide Password" : "Show Password"}
         </small>
-        <Button variant="cta" disabled={pending}>
-          {pending ? "Registering..." : "Register"}
+        <Button variant="cta" disabled={isPending}>
+          {isPending ? "Registering..." : "Register"}
         </Button>
         <small className="ml-1">
           Already have an account,{" "}

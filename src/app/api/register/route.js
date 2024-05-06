@@ -5,6 +5,9 @@ import bcrypt from "bcryptjs";
 export async function POST(req) {
   try {
     const { name, email, password } = await req.json();
+    if ((!name, !email, !password)) {
+      throw new Error("Invalid fields, Please try again!");
+    }
     const userExists = await Users.findOne({ $or: [{ name }, { email }] });
     if (userExists) {
       return NextResponse.json(
@@ -26,7 +29,7 @@ export async function POST(req) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: "An error occurred, please try again!" },
+      { message: error.message ||  "An error occurred, please try again!" },
       { status: 500 }
     );
   }

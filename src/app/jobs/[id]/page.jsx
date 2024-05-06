@@ -58,7 +58,7 @@ export default async function JobDetailed({ params: { id } }) {
                   - {getTotalApplicantsMessage(job.applied.length)}
                 </small>
               </article>
-              <Apply id={job._id} appliedUsers={job.applied}/>
+              <Apply id={job._id} appliedUsers={job.applied} />
             </div>
             <p className="mb-4">{job.description}</p>
             <h2 className=" text-xl font-medium mb-4">Find similar roles:</h2>
@@ -73,7 +73,7 @@ export default async function JobDetailed({ params: { id } }) {
           <article className="col-span-4 p-4 sticky top-[96px] h-fit order-1 md:block hidden bg-[#F5F5F5] rounded-sm drop-shadow-sm">
             <Link
               href={`/companies/${job.company._id}`}
-              className="text-2xl hover:text-[#1bbe17ff]"
+              className="text-2xl hover:text-[#1bbe17ff] font-medium"
             >
               {job.company.name}
             </Link>

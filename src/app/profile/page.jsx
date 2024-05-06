@@ -6,11 +6,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { IoMailUnread } from "react-icons/io5";
 import { MdOutlineDateRange } from "react-icons/md";
 import { formatTimestamp } from "@/utils";
 import JobsAppliedList from "@/app/profile/_components/JobsAppliedList";
+import EditUserForm from "./_components/EditUserForm";
 
 import React from "react";
 
@@ -34,8 +43,27 @@ export default async function Profile() {
                     <BsThreeDotsVertical />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuItem className="cursor-pointer">
-                      Edit
+                    <DropdownMenuItem className="cursor-pointer" asChild>
+                      <Dialog>
+                        <DialogTrigger className="text-sm py-[0.375rem] px-2 w-full flex hover:bg-[#f1f5f9] transition-colors">
+                          Edit
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                          <DialogHeader>
+                            <DialogTitle>Edit profile</DialogTitle>
+                            <DialogDescription>
+                              Make changes to your profile here. Click save when
+                              you&apos;re done.
+                            </DialogDescription>
+                          </DialogHeader>
+                          <EditUserForm
+                            name={user.name}
+                            email={user.email}
+                            description={user.description}
+                            id={String(user._id)}
+                          />
+                        </DialogContent>
+                      </Dialog>
                     </DropdownMenuItem>
                     <SignOutButton />
                   </DropdownMenuContent>
