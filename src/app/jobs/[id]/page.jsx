@@ -44,7 +44,7 @@ export default async function JobDetailed({ params: { id } }) {
     <main className="max-w-[1280px] m-auto p-4 grid grid-cols-1 md:grid-cols-10 gap-4">
       {job && (
         <>
-          <article className="col-span-6 p-4">
+          <article className="col-span-6">
             <div className="flex items-center justify-between flex-wrap rounded-sm drop-shadow-sm gap-x-4 gap-y-2 mb-1">
               <article>
                 <h1 className="text-2xl font-medium">{job.title}</h1>
