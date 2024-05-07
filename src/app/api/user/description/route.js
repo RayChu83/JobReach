@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function PUT(req) {
   try {
-    const { name, id } = await req.json();
-    if (!name || !id) {
-      throw new Error("Invalid fields, Please try again!");
+    const { description, id } = await req.json();
+    if (!id) {
+      throw new Error("Session not available, Please try again!");
     }
-    await Users.findByIdAndUpdate(id, { name });
+    await Users.findByIdAndUpdate(id, { description });
     return NextResponse.json(
       { message: "Account updated successfully!" },
       { status: 200 }

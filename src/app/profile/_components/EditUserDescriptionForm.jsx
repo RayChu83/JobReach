@@ -1,33 +1,29 @@
 "use client";
 import { DialogFooter } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import FormMessage from "@/components/FormMessage";
 import { useRouter } from "next/navigation";
 
 import React, { useState, useTransition } from "react";
 
-export default function EditUserForm({ name, email, description, id }) {
+export default function EditUserDescriptionForm({ description, id }) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [formMessage, setFormMessage] = useState(null);
   const handleAction = (formData) => {
     startTransition(async () => {
       setFormMessage(null);
-      const [name, description] = [
-        formData.get("name"),
-        formData.get("description"),
-      ];
-      const res = await fetch("api/user", {
+      const description = formData.get("description")
+      const res = await fetch("api/user/description", {
         method: "put",
         cache: "no-store",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, description, id }),
+        body: JSON.stringify({ description, id }),
       });
       const { message } = await res.json();
       if (!res.ok) {
@@ -54,31 +50,7 @@ export default function EditUserForm({ name, email, description, id }) {
           message={formMessage.message}
         />
       )}
-      <div className="flex flex-col gap-1 py-2">
-        <Label htmlFor="name" className="w-fit ml-1">
-          Name:
-        </Label>
-        <Input
-          id="name"
-          name="name"
-          defaultValue={name}
-          required
-        />
-      </div>
-      <div className="flex flex-col gap-1 py-2">
-        <Label htmlFor="username" className="w-fit ml-1">
-          Email:
-        </Label>
-        <Input
-          id="username"
-          name="email"
-          value={email}
-          type="text"
-          readOnly
-          className="text-gray-500 cursor-not-allowed"
-        />
-      </div>
-      <div className="flex flex-col gap-1 py-2">
+      <article className="flex flex-col gap-1 py-2">
         <Label htmlFor="description" className="w-fit ml-1">
           Description:
         </Label>
@@ -87,10 +59,11 @@ export default function EditUserForm({ name, email, description, id }) {
           name="description"
           defaultValue={description}
           rows="5"
+          maxLength="750"
         />
-      </div>
+      </article>
       <DialogFooter>
-        <Button type="submit" disabled={isPending}>
+        <Button type="submit" disabled={isPending} variant="cta">
           {isPending ? "Saving Changes..." : "Save Changes"}
         </Button>
       </DialogFooter>

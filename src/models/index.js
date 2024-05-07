@@ -23,6 +23,13 @@ const jobSchema = new Schema(
   {
     title: String,
     description: String,
+    experience: [
+      {
+        title: String,
+        type: String,
+        description: String,
+      },
+    ],
     applied: [
       {
         type: mongoose.SchemaTypes.ObjectId,
