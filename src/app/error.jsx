@@ -4,24 +4,25 @@ import { Link } from "next-view-transitions";
 
 import React from "react";
 
-import { BiSolidError } from "react-icons/bi";
-
 export default function Error({ reset }) {
   return (
-    <main className="max-w-[1280px] m-auto text-center">
-      <h1 className="text-2xl font-semibold flex gap-2 items-center justify-center">
-        <BiSolidError />
-        Something went wrong, Please try again!
+    <main className="max-w-[1280px] m-auto text-center top-[42%] sticky">
+    <section className="max-w-[400px] flex flex-col items-center m-auto gap-2">
+      <h1 className="flex gap-2 items-center text-7xl font-bold text-red-500">
+          500
       </h1>
-      <br />
-      <div className="flex gap-4 items-center justify-center">
-        <Button variant="destructive" onClick={reset}>
-          Try Again
-        </Button>
-        <Button asChild>
-          <Link href="/">Go Home</Link>
-        </Button>
-      </div>
-    </main>
+    <h3 className="text-lg font-medium">
+      Something went wrong, please try again later or contact us if the problem continues!
+    </h3>
+    <div className="flex gap-2 items-center justify-center">
+      <Button className="w-fit" variant="destructive" onClick={reset}>
+        Try Again
+      </Button>
+      <Button asChild className="w-fit">
+          <Link href="/">Back To Home</Link>
+      </Button>
+    </div>
+    </section>
+  </main>
   );
 }

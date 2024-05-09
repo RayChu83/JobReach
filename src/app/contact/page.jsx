@@ -36,10 +36,10 @@ export default function Contact() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger>Are there any remote positions?</AccordionTrigger>
+          <AccordionTrigger>Who can see my profile?</AccordionTrigger>
           <AccordionContent>
-            Yes, but not all positions are remote; some may be hybrid or in
-            person.
+
+          Only employers have access to view your profile; other users do not have permission.
           </AccordionContent>
         </AccordionItem>
       </Accordion>

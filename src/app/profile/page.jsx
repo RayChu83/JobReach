@@ -23,6 +23,7 @@ import JobsAppliedList from "@/app/profile/_components/JobsAppliedList";
 import EditUserInfoForm from "./_components/EditUserInfoForm";
 import EditUserDescriptionForm from "./_components/EditUserDescriptionForm";
 import EditUserExperienceForm from "./_components/EditUserExperienceForm";
+import { notFound } from "next/navigation";
 
 import React from "react";
 
@@ -38,6 +39,9 @@ export async function generateMetadata() {
 
 export default async function Profile() {
   const user = await getUser();
+  if (!user) {
+    notFound();
+  }
   // remove ._id we will be using id field
   const userExperienceWithoutId = user.experience.map(
     ({ jobTitle, jobCompany, jobDescription, id }) => ({
@@ -158,7 +162,7 @@ export default async function Profile() {
                           {experience.jobCompany}
                         </small>
                         <p
-                          className="whitespace-pre-wrap truncate"
+                          className="whitespace-pre-wrap truncate text-gray-500"
                           title={experience.jobDescription}
                         >
                           {experience.jobDescription}

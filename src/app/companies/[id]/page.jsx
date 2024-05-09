@@ -1,5 +1,6 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { CompanyListings } from "@/app/companies/[id]/_components/CompanyListings";
+import {notFound} from "next/navigation"
 
 import React from "react";
 
@@ -36,6 +37,9 @@ const getCompany = async (id) => {
 
 export default async function CompanyDetail({ params: { id } }) {
   const company = await getCompany(id);
+  if (!company) {
+    notFound()
+  }
   return (
     <main className="max-w-[1280px] m-auto p-4 flex flex-col-reverse md:grid grid-cols-10 gap-4">
       {company && (

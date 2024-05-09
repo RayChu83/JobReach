@@ -18,7 +18,11 @@ import React, { useState, useTransition } from "react";
 
 export default function EditUserExperienceForm({ fetchedExperience, id }) {
   const router = useRouter();
-  const [experience, setExperience] = useState(fetchedExperience || [{ jobTitle: "", jobCompany: "", jobDescription: "", id : uuidv4()}]);
+  const [experience, setExperience] = useState(
+    fetchedExperience || [
+      { jobTitle: "", jobCompany: "", jobDescription: "", id: uuidv4() },
+    ]
+  );
   const [isPending, startTransition] = useTransition();
   const [formMessage, setFormMessage] = useState(null);
   const handleInputChange = (id, field, newValue) => {
@@ -130,6 +134,7 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
                         e.target.value
                       )
                     }
+                    rows="5"
                     className="text-gray-500"
                     required
                   />
@@ -144,8 +149,23 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
         onClick={() =>
           setExperience((prev) =>
             prev.length
-              ? [...prev, { jobTitle: "", jobCompany: "", jobDescription: "", id : uuidv4()}]
-              : [{ jobTitle: "", jobCompany: "", jobDescription: "", id : uuidv4()}]
+              ? [
+                  ...prev,
+                  {
+                    jobTitle: "",
+                    jobCompany: "",
+                    jobDescription: "",
+                    id: uuidv4(),
+                  },
+                ]
+              : [
+                  {
+                    jobTitle: "",
+                    jobCompany: "",
+                    jobDescription: "",
+                    id: uuidv4(),
+                  },
+                ]
           )
         }
         className="w-fit"

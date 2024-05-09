@@ -35,7 +35,7 @@ export default function Contactform() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-y-4 w-full"
+      className="flex flex-col gap-y-2 w-full"
       ref={form}
     >
       {formMessage && (

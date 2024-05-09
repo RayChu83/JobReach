@@ -3,6 +3,7 @@ import { Job } from "@/components/Job";
 import { getTotalApplicantsMessage } from "@/utils";
 import { Apply } from "@/components/Apply";
 import { FaLocationDot } from "react-icons/fa6";
+import { notFound } from "next/navigation";
 
 import React from "react";
 
@@ -40,6 +41,9 @@ const getJob = async (id) => {
 
 export default async function JobDetailed({ params: { id } }) {
   const job = await getJob(id);
+  if (!job) {
+    notFound()
+  }
   return (
     <main className="max-w-[1280px] m-auto p-4 grid grid-cols-1 md:grid-cols-10 gap-4">
       {job && (
