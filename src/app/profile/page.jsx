@@ -144,10 +144,13 @@ export default async function Profile() {
                     </DialogContent>
                   </Dialog>
                 </span>
-                  {(userExperienceWithoutId.length && (
-                    <section className="flex flex-col gap-2">
-                      {userExperienceWithoutId.map((experience) => (
-                      <article className="p-4 rounded-sm drop-shadow-sm bg-[#F5F5F5]" key={experience.id}>
+                {(userExperienceWithoutId.length && (
+                  <section className="flex flex-col gap-2">
+                    {userExperienceWithoutId.map((experience) => (
+                      <article
+                        className="p-4 rounded-sm drop-shadow-sm bg-[#F5F5F5]"
+                        key={experience.id}
+                      >
                         <h4 className="text-xl font-medium line-clamp-1 w-fit">
                           {experience.jobTitle}
                         </h4>
@@ -162,34 +165,36 @@ export default async function Profile() {
                         </p>
                       </article>
                     ))}
-                    </section>
-                  ) ||
-                  <p className="text-gray-500">Tip: Adding work experience enhances your profile and provides valuable insight to potential employers about your professional background.</p>)}
-              </article>
-              <hr />
-              <article>
-                <h3 className="text-2xl font-semibold">
-                  Additional Information:
-                </h3>
-                <span className="flex flex-col">
-                  <small className="text-gray-500 flex items-center gap-1">
-                    <MdOutlineDateRange />
-                    Join Date: {formatTimestamp(user.createdAt)}
-                  </small>
-                  <small className="text-gray-500 flex items-center gap-1">
-                    <MdOutlineDateRange />
-                    Last Edited: {formatTimestamp(user.updatedAt)}
-                  </small>
-                </span>
+                  </section>
+                )) || (
+                  <p className="text-gray-500">
+                    Tip: Adding work experience enhances your profile and
+                    provides valuable insight to potential employers about your
+                    professional background.
+                  </p>
+                )}
               </article>
               <hr />
             </section>
-            <section className="md:col-span-4">
+            <section className="md:col-span-4 mb-2">
               <JobsAppliedList jobs={user.applications.slice(0, 2)} />
             </section>
           </div>
         </>
       )}
+      <article className="mt-2">
+        <h3 className="text-2xl font-semibold">Additional Information:</h3>
+        <span className="flex flex-col">
+          <small className="text-gray-500 flex items-center gap-1">
+            <MdOutlineDateRange />
+            Join Date: {formatTimestamp(user.createdAt)}
+          </small>
+          <small className="text-gray-500 flex items-center gap-1">
+            <MdOutlineDateRange />
+            Last Edited: {formatTimestamp(user.updatedAt)}
+          </small>
+        </span>
+      </article>
     </main>
   );
 }
