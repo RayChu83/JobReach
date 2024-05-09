@@ -15,6 +15,14 @@ const userSchema = new Schema(
     ],
     email: String,
     password: String,
+    experience: [
+      {
+        jobTitle: String,
+        jobCompany: String,
+        jobDescription: String,
+        id: String,
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -23,13 +31,6 @@ const jobSchema = new Schema(
   {
     title: String,
     description: String,
-    experience: [
-      {
-        title: String,
-        type: String,
-        description: String,
-      },
-    ],
     applied: [
       {
         type: mongoose.SchemaTypes.ObjectId,

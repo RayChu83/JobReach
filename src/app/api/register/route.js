@@ -22,6 +22,7 @@ export async function POST(req) {
       password: hashedPassword,
       description: "",
       applications: [],
+      experience : []
     });
     return NextResponse.json(
       { message: "User registered successfully." },

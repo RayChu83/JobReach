@@ -60,7 +60,7 @@ export default async function JobDetailed({ params: { id } }) {
               </article>
               <Apply id={job._id} appliedUsers={job.applied} />
             </div>
-            <p className="mb-4">{job.description}</p>
+            <p className="mb-4 truncate whitespace-pre-wrap">{job.description}</p>
             <h2 className=" text-xl font-medium mb-4">Find similar roles:</h2>
             <section className="grid sm:grid-cols-2 grid-cols-1 gap-4">
               {job.company.listings.length &&
