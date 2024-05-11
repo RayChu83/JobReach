@@ -37,7 +37,7 @@ export default function Footer() {
           those positions.
         </p>
         <Button asChild variant="link" size="paddingNone">
-          <Link href="/jobs">See Opportunities</Link>
+          <Link href="/contact">Contact Us</Link>
         </Button>
       </div>
       <div className="w-full p-4">

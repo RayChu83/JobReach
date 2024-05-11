@@ -197,7 +197,7 @@ export default async function Profile() {
               <hr />
             </section>
             <section className="md:col-span-4">
-              <JobsAppliedList jobs={user.applications.slice(0, 2)} />
+              <JobsAppliedList jobs={user.applications.reverse().slice(0, 2)} />
             </section>
           </div>
         </>

@@ -20,7 +20,7 @@ import React, { useState, useTransition } from "react";
 export default function EditUserExperienceForm({ fetchedExperience, id }) {
   const router = useRouter();
   const [experience, setExperience] = useState(
-    fetchedExperience || [
+    (fetchedExperience.length && fetchedExperience) || [
       { jobTitle: "", jobCompany: "", jobDescription: "", id: uuidv4() },
     ]
   );
@@ -90,7 +90,7 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
                 />
                 <span className="w-full">
                   <AccordionTrigger>
-                    {job.jobTitle || `Job ${index + 1}`}
+                    {job.jobTitle || `Untitled ${index + 1}`}
                   </AccordionTrigger>
                 </span>
               </span>
@@ -103,11 +103,7 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
                     id={`jt-${index + 1}`}
                     defaultValue={job.jobTitle}
                     onChange={(e) =>
-                      handleInputChange(
-                        job.id,
-                        "jobTitle",
-                        e.target.value
-                      )
+                      handleInputChange(job.id, "jobTitle", e.target.value)
                     }
                     type="text"
                     className="text-gray-500"
