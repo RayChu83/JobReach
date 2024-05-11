@@ -48,6 +48,7 @@ export const formatTimestamp = (timestamp) => {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
+    timeZone : "America/New_York"
   };
   return date.toLocaleString("en-US", options);
 };

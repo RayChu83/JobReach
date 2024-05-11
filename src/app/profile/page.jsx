@@ -20,9 +20,9 @@ import { MdOutlineDateRange } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { formatTimestamp } from "@/utils";
 import JobsAppliedList from "@/app/profile/_components/JobsAppliedList";
-import EditUserInfoForm from "./_components/EditUserInfoForm";
-import EditUserDescriptionForm from "./_components/EditUserDescriptionForm";
-import EditUserExperienceForm from "./_components/EditUserExperienceForm";
+import EditUserInfoForm from "@/app/profile/_components/EditUserInfoForm";
+import EditUserDescriptionForm from "@/app/profile/_components/EditUserDescriptionForm";
+import EditUserExperienceForm from "@/app/profile/_components/EditUserExperienceForm";
 import { notFound } from "next/navigation";
 
 import React from "react";
@@ -179,26 +179,29 @@ export default async function Profile() {
                 )}
               </article>
               <hr />
+              <article>
+                <h3 className="text-2xl font-semibold">
+                  Additional Details:
+                </h3>
+                <span className="flex flex-col">
+                  <small className="text-gray-500 flex items-center gap-1">
+                    <MdOutlineDateRange />
+                    Join Date: {formatTimestamp(user.createdAt)}
+                  </small>
+                  <small className="text-gray-500 flex items-center gap-1">
+                    <MdOutlineDateRange />
+                    Last Edited: {formatTimestamp(user.updatedAt)}
+                  </small>
+                </span>
+              </article>
+              <hr />
             </section>
-            <section className="md:col-span-4 mb-2">
+            <section className="md:col-span-4">
               <JobsAppliedList jobs={user.applications.slice(0, 2)} />
             </section>
           </div>
         </>
       )}
-      <article className="mt-2">
-        <h3 className="text-2xl font-semibold">Additional Information:</h3>
-        <span className="flex flex-col">
-          <small className="text-gray-500 flex items-center gap-1">
-            <MdOutlineDateRange />
-            Join Date: {formatTimestamp(user.createdAt)}
-          </small>
-          <small className="text-gray-500 flex items-center gap-1">
-            <MdOutlineDateRange />
-            Last Edited: {formatTimestamp(user.updatedAt)}
-          </small>
-        </span>
-      </article>
     </main>
   );
 }
