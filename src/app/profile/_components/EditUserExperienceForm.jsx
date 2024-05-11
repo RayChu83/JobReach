@@ -13,6 +13,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { TiDelete } from "react-icons/ti";
 
 import React, { useState, useTransition } from "react";
 
@@ -23,6 +24,9 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
       { jobTitle: "", jobCompany: "", jobDescription: "", id: uuidv4() },
     ]
   );
+  const removeExperience = (id) => {
+    setExperience(experience.filter((job) => job.id !== id));
+  };
   const [isPending, startTransition] = useTransition();
   const [formMessage, setFormMessage] = useState(null);
   const handleInputChange = (id, field, newValue) => {
@@ -76,11 +80,20 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
       )}
       <Accordion type="single" collapsible className="w-full">
         {experience &&
-          experience.map((experience, index) => (
+          experience.map((job, index) => (
             <AccordionItem value={`item-${index + 1}`} key={index}>
-              <AccordionTrigger>
-                {experience.jobTitle || `Job ${index + 1}`}
-              </AccordionTrigger>
+              <span className="flex items-center gap-2">
+                <TiDelete
+                  className="text-red-500 text-xl cursor-pointer"
+                  onClick={() => removeExperience(job.id)}
+                  title="Are you sure you want to remove this job experience?"
+                />
+                <span className="w-full">
+                  <AccordionTrigger>
+                    {job.jobTitle || `Job ${index + 1}`}
+                  </AccordionTrigger>
+                </span>
+              </span>
               <AccordionContent>
                 <article className="flex flex-col gap-1 py-2 px-[1px]">
                   <Label htmlFor={`jt-${index + 1}`} className="w-fit ml-1">
@@ -88,10 +101,10 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
                   </Label>
                   <Input
                     id={`jt-${index + 1}`}
-                    defaultValue={experience.jobTitle}
+                    defaultValue={job.jobTitle}
                     onChange={(e) =>
                       handleInputChange(
-                        experience.id,
+                        job.id,
                         "jobTitle",
                         e.target.value
                       )
@@ -107,13 +120,9 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
                   </Label>
                   <Input
                     id={`jc-${index + 1}`}
-                    defaultValue={experience.jobCompany}
+                    defaultValue={job.jobCompany}
                     onChange={(e) =>
-                      handleInputChange(
-                        experience.id,
-                        "jobCompany",
-                        e.target.value
-                      )
+                      handleInputChange(job.id, "jobCompany", e.target.value)
                     }
                     type="text"
                     className="text-gray-500"
@@ -126,10 +135,10 @@ export default function EditUserExperienceForm({ fetchedExperience, id }) {
                   </Label>
                   <Textarea
                     id={`jd-${index + 1}`}
-                    defaultValue={experience.jobDescription}
+                    defaultValue={job.jobDescription}
                     onChange={(e) =>
                       handleInputChange(
-                        experience.id,
+                        job.id,
                         "jobDescription",
                         e.target.value
                       )
