@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 
 import React from "react";
 
-export function Apply({ id, appliedUsers}) {
-  const session = useSession()
+export function Apply({ id, appliedUsers, sessionId }) {
+  const session = useSession();
   const router = useRouter();
   const apply = async () => {
     const res = await fetch(`/api/jobs/apply/${id}`, {
@@ -16,15 +16,19 @@ export function Apply({ id, appliedUsers}) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body : JSON.stringify(session.data.user.id)
+      body: JSON.stringify(sessionId),
     });
     if (res.ok) {
       router.refresh();
     }
   };
   return (
-    <Button variant="cta" onClick={apply} disabled={appliedUsers.includes(session.data.user.id)}>
-      {appliedUsers.includes(session.data.user.id) ? "Applied" : "Apply"}
+    <Button
+      variant="cta"
+      onClick={apply}
+      disabled={appliedUsers.includes(sessionId)}
+    >
+      {appliedUsers.includes(sessionId) ? "Applied" : "Apply"}
     </Button>
   );
 }

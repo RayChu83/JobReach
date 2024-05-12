@@ -6,6 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { notFound } from "next/navigation";
 
 import React from "react";
+import { getUser } from "@/app/profile/_actions/getUser";
 
 export async function generateMetadata({ params: { id } }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/jobs/${id}`, {
@@ -41,7 +42,8 @@ const getJob = async (id) => {
 
 export default async function JobDetailed({ params: { id } }) {
   const job = await getJob(id);
-  if (!job) {
+  const user = await getUser();
+  if (!job || !user) {
     notFound()
   }
   return (
@@ -62,7 +64,7 @@ export default async function JobDetailed({ params: { id } }) {
                   - {getTotalApplicantsMessage(job.applied.length)}
                 </small>
               </article>
-              <Apply id={job._id} appliedUsers={job.applied} />
+              <Apply id={job._id} appliedUsers={job.applied} sessionId={String(user._id)}/>
             </div>
             <p className="mb-4 truncate whitespace-pre-wrap">{job.description}</p>
             <h2 className=" text-xl font-medium mb-4">Find similar roles:</h2>

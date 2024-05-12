@@ -1,6 +1,7 @@
 import { Users } from "@/models";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 
 export const authOptions = {
@@ -31,19 +32,24 @@ export const authOptions = {
         return null;
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user._id;
+    async signIn({ account, profile }) {
+      if (profile) {
+        await Users.create({
+          name: profile.name,
+          email: profile.email,
+          password: "",
+          description: "",
+          applications: [],
+          experience: [],
+        });
       }
-      return token;
-    },
-    async session({ session, token }) {
-      if (token.id) {
-        session.user.id = token.id;
-      }
-      return session;
+      return true;
     },
   },
 };

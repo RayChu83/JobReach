@@ -7,6 +7,7 @@ import { signIn } from "next-auth/react";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 import { FaClock } from "react-icons/fa6";
+import { FaGoogle } from "react-icons/fa";
 
 import React, { useState, useTransition } from "react";
 
@@ -68,7 +69,7 @@ export default function Login() {
           status: 500,
           message: "Something went wrong, Please try again!",
         });
-        return
+        return;
       } else {
         setFormMessage({
           status: 200,
@@ -77,7 +78,7 @@ export default function Login() {
         router.replace("/");
         router.refresh();
       }
-    })
+    });
   };
   return (
     <main className="max-w-[1280px] m-auto p-4">
@@ -126,6 +127,16 @@ export default function Login() {
         >
           {passwordVisible ? "Hide Password" : "Show Password"}
         </small>
+        <Button
+          className="flex items-center gap-2"
+          onClick={() => signIn("google")}
+          variant="outline"
+          type="button"
+          disabled={isPending}
+        >
+          <FaGoogle />
+          Login With Google
+        </Button>
         <Button
           className="flex items-center gap-2"
           onClick={handleDemo}
