@@ -11,6 +11,7 @@ import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
 import { SearchBar } from "@/components/SearchBar";
 
 import React, { useState } from "react";
+import NoResults from "@/components/NoResults";
 
 export default function CompaniesList({ companies }) {
   const [filteredCompanies, setFilteredCompanies] = useState(companies);
@@ -62,12 +63,13 @@ export default function CompaniesList({ companies }) {
         </DropdownMenu>
         <SearchBar data={companies} update={setFilteredCompanies} fields={["name", "description"]} placeholder="Search Companies..."/>
       </section>
-      <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
-        {filteredCompanies &&
-          filteredCompanies.map((company) => (
-            <Company key={company._id} company={company} />
-          ))}
-      </section>
+          {filteredCompanies?.length ? (
+          <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
+            {filteredCompanies.map((company) => <Company key={company._id} company={company} />)}
+          </section>
+        ) : (
+          <NoResults />
+        )}
     </main>
   );
 }

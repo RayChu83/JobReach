@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IoIosOptions } from "react-icons/io";
 import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
+import NoResults from "@/components/NoResults";
 
 import React, { useState } from "react";
 
@@ -68,7 +69,7 @@ export function CompanyListings({ company }) {
           placeholder="Search Jobs..."
         />
       </section>
-      {sortedData.length ? (
+      {sortedData?.length ? (
         sortedData.map((listing) => (
           <article
             className="p-4 rounded-sm outline outline-gray-300 outline-1 drop-shadow-sm"
@@ -94,7 +95,7 @@ export function CompanyListings({ company }) {
           </article>
         ))
       ) : (
-        <p></p>
+        <NoResults />
       )}
     </>
   );

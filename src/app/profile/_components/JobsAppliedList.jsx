@@ -1,6 +1,7 @@
 import { Job } from "@/components/Job";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
+import NoApplications from "@/app/profile/_components/NoApplications"
 
 import React from "react";
 
@@ -22,9 +23,7 @@ export default function JobsAppliedList({ jobs }) {
           </Button>
         </div>
       ) : (
-        <p className="text-center px-2 text-gray-500">
-          Recent applications will be displayed here.
-        </p>
+        <NoApplications />
       )}
     </>
   );

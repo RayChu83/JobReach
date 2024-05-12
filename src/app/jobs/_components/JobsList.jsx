@@ -12,6 +12,7 @@ import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
 import { SearchBar } from "@/components/SearchBar";
 
 import React, { useState } from "react";
+import NoResults from "@/components/NoResults";
 
 export function JobsList({ jobs }) {
   const [sortedJobs, setSortedJobs] = useState(jobs);
@@ -68,9 +69,13 @@ export function JobsList({ jobs }) {
           placeholder="Search Jobs..."
         />
       </section>
-      <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
-        {sortedJobs && sortedJobs.map((job) => <Job job={job} key={job._id} />)}
-      </section>
+        {sortedJobs?.length ? (
+          <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
+            {sortedJobs.map((job) => <Job job={job} key={job._id} />)}
+          </section>
+        ) : (
+          <NoResults />
+        )}
     </main>
   );
 }
