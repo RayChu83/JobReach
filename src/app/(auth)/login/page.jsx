@@ -42,7 +42,7 @@ export default function Login() {
         } else {
           setFormMessage({
             status: 200,
-            message: "Success!",
+            message: "Logging in...",
           });
           router.replace("/");
           router.refresh();
