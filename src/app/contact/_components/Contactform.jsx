@@ -6,31 +6,34 @@ import FormMessage from "@/components/FormMessage";
 import { Label } from "@/components/ui/label";
 import emailjs from "@emailjs/browser";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useTransition } from "react";
 
 export default function Contactform() {
   const [formMessage, setFormMessage] = useState(null);
+  const [isPending, startTransition] = useTransition();
   const form = useRef();
   const handleSubmit = (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        form.current,
-        {
-          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-        }
-      )
-      .then(() => {
-        setFormMessage({ status: 200, message: "Message Sent" });
-      }),
-      (error) => {
-        setFormMessage({
-          status: 500,
-          message: "An error occurred, please try again!",
-        });
-      };
+    startTransition(() => {
+      emailjs
+        .sendForm(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+          form.current,
+          {
+            publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+          }
+        )
+        .then(() => {
+          setFormMessage({ status: 200, message: "Message Sent" });
+        }),
+        (error) => {
+          setFormMessage({
+            status: 500,
+            message: "An error occurred, please try again!",
+          });
+        };
+    });
   };
   return (
     <form
@@ -74,8 +77,8 @@ export default function Contactform() {
           required
         />
       </article>
-      <Button type="submit" variant="cta">
-        Send
+      <Button type="submit" variant="cta" disabled={isPending}>
+      {isPending ? "Sending..." : "Send"}
       </Button>
     </form>
   );

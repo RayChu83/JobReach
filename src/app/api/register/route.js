@@ -8,7 +8,7 @@ export async function POST(req) {
     if ((!name, !email, !password)) {
       throw new Error("Invalid fields, Please try again!");
     }
-    const userExists = await Users.findOne({ $or: [{ name }, { email }] });
+    const userExists = await Users.findOne({ email });
     if (userExists) {
       return NextResponse.json(
         { message: "Name or email is already in use." },
@@ -22,7 +22,7 @@ export async function POST(req) {
       password: hashedPassword,
       description: "",
       applications: [],
-      experience : []
+      experience: [],
     });
     return NextResponse.json(
       { message: "User registered successfully." },
@@ -30,7 +30,7 @@ export async function POST(req) {
     );
   } catch (error) {
     return NextResponse.json(
-      { message: error.message ||  "An error occurred, please try again!" },
+      { message: error.message || "An error occurred, please try again!" },
       { status: 500 }
     );
   }
