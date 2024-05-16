@@ -24,7 +24,8 @@ export const authOptions = {
             existingUser.password
           );
           if (passwordMatch) {
-            return existingUser;
+            const { password, ...userWithoutPassword } = existingUser;
+            return userWithoutPassword._doc;
           } else {
             return null;
           }
