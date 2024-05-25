@@ -71,7 +71,7 @@ export function JobsList({ jobs }) {
       </section>
         {sortedJobs?.length ? (
           <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
-            {sortedJobs.map((job) => <Job job={job} key={job._id} />)}
+            {sortedJobs.map((job) => <Job job={job} key={job._id} displayDetailsOnHover={true}/>)}
           </section>
         ) : (
           <NoResults />

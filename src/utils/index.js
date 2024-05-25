@@ -48,7 +48,33 @@ export const formatTimestamp = (timestamp) => {
     hour: "2-digit",
     minute: "2-digit",
     hour12: true,
-    timeZone : "America/New_York"
+    timeZone: "America/New_York",
   };
   return date.toLocaleString("en-US", options);
+};
+
+export const getSocialProof = () => {
+  return [
+    {
+      name: "Johnothan Dale",
+      role: "Senior Front End Developer",
+      message:
+        "JobReach is an awesome source to find job opportunities that aren't as competitive as sites like LinkedIn or Indeed.",
+      headshotSrc: "/socialproof/headshot1.png",
+    },
+    {
+      name: "Henry Zhang",
+      role: "UI UX Designer",
+      message:
+        "JobReach helped me land my first position at Netflix as a UI UX Designer. Thanks to them, this is my go to site for applying to positions.",
+      headshotSrc: "/socialproof/headshot2.png",
+    },
+    {
+      name: "Adrian Camels",
+      role: "Full Stack Developer",
+      message:
+        "Thanks to JobReach and their small community, I was able to hear back from almost all of the positions I applied to and landed my first job.",
+      headshotSrc: "/socialproof/headshot3.png",
+    },
+  ];
 };

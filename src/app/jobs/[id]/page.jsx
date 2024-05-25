@@ -44,7 +44,7 @@ export default async function JobDetailed({ params: { id } }) {
   const job = await getJob(id);
   const user = await getUser();
   if (!job || !user) {
-    notFound()
+    notFound();
   }
   return (
     <main className="max-w-[1280px] m-auto p-4 grid grid-cols-1 md:grid-cols-10 gap-4">
@@ -64,22 +64,34 @@ export default async function JobDetailed({ params: { id } }) {
                   - {getTotalApplicantsMessage(job.applied.length)}
                 </small>
               </article>
-              <Apply id={job._id} appliedUsers={job.applied} sessionId={String(user._id)}/>
+              <Apply
+                id={job._id}
+                appliedUsers={job.applied}
+                sessionId={String(user._id)}
+              />
             </div>
-            <p className="mb-4 truncate whitespace-pre-wrap">{job.description}</p>
+            <p className="mb-4 truncate whitespace-pre-wrap">
+              {job.description}
+            </p>
             <h2 className=" text-xl font-medium mb-4">Find similar roles:</h2>
             <section className="grid sm:grid-cols-2 grid-cols-1 gap-4">
               {job.company.listings.length &&
                 job.company.listings
                   .filter((listing) => listing._id !== id)
                   .slice(0, 2)
-                  .map((listing) => <Job job={listing} key={listing._id} />)}
+                  .map((listing) => (
+                    <Job
+                      job={listing}
+                      key={listing._id}
+                      isDescriptionFaded={true}
+                    />
+                  ))}
             </section>
           </article>
           <article className="col-span-4 p-4 sticky top-[96px] h-fit order-1 md:block hidden bg-[#F5F5F5] rounded-sm drop-shadow-sm">
             <Link
               href={`/companies/${job.company._id}`}
-              className="text-2xl hover:text-[#1bbe17ff] font-medium"
+              className="text-2xl hover:text-[#1bbe17ff] font-semibold"
             >
               {job.company.name}
             </Link>

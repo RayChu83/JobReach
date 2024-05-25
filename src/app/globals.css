@@ -74,3 +74,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+.text-fade {
+  background: -webkit-linear-gradient(#000, #d1d1d1);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
