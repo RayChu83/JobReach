@@ -1,12 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import React from "react";
 
-export function Apply({ id, appliedUsers, sessionId }) {
-  const session = useSession();
+export function Apply({ id, appliedUsers, userId }) {
   const router = useRouter();
   const apply = async () => {
     const res = await fetch(`/api/jobs/apply/${id}`, {
@@ -16,7 +14,7 @@ export function Apply({ id, appliedUsers, sessionId }) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(sessionId),
+      body: JSON.stringify(userId),
     });
     if (res.ok) {
       router.refresh();
@@ -26,9 +24,9 @@ export function Apply({ id, appliedUsers, sessionId }) {
     <Button
       variant="cta"
       onClick={apply}
-      disabled={appliedUsers.includes(sessionId)}
+      disabled={appliedUsers.includes(userId)}
     >
-      {appliedUsers.includes(sessionId) ? "Applied" : "Apply"}
+      {appliedUsers.includes(userId) ? "Applied" : "Apply"}
     </Button>
   );
 }

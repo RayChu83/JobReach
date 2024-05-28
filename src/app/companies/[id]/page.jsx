@@ -1,4 +1,5 @@
 import { CompanyDetailed } from "@/app/companies/[id]/_components/CompanyDetailed";
+import { getUser } from "@/app/profile/_actions/getUser";
 import { notFound } from "next/navigation";
 
 import React from "react";
@@ -35,9 +36,10 @@ const getCompany = async (id) => {
 };
 
 export default async function CompanyDetailedPage({ params: { id } }) {
+  const user = await getUser();
   const company = await getCompany(id);
   if (!company) {
     notFound();
   }
-  return company && <CompanyDetailed company={company} />;
+  return company && <CompanyDetailed company={company} user={JSON.stringify(user)}/>;
 }

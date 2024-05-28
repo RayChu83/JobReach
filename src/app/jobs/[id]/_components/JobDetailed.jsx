@@ -33,7 +33,7 @@ export default function JobDetailed({ job, user, jobId }) {
           <Apply
             id={job._id}
             appliedUsers={job.applied}
-            sessionId={String(user._id)}
+            userId={String(user._id)}
           />
         </div>
         <p className="mb-4 truncate whitespace-pre-wrap">{job.description}</p>

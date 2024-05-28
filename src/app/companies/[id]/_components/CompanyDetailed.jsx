@@ -17,7 +17,8 @@ import { opacityUpwardsAnimation, slowStaggerVariant } from "@/animations";
 
 import React, { useState } from "react";
 
-export function CompanyDetailed({ company }) {
+export function CompanyDetailed({ company, user}) {
+  user = JSON.parse(user)
   const [sortedListings, setSortedListings] = useState(company.listings);
   const [sort, setSort] = useState("alphabetical");
   switch (sort) {
@@ -102,7 +103,7 @@ export function CompanyDetailed({ company }) {
                     </Link>
                     <p className="mb-2">{listing.description}</p>
                     <div className="flex justify-end">
-                      <Apply id={listing._id} appliedUsers={listing.applied} />
+                      <Apply id={listing._id} appliedUsers={listing.applied} userId={user._id}/>
                     </div>
                   </motion.article>
                 ))
