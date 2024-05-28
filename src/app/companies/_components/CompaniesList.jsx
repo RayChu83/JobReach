@@ -9,9 +9,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
 import { SearchBar } from "@/components/SearchBar";
+import NoResults from "@/components/NoResults";
+import { motion } from "framer-motion";
+import { opacityAnimation, staggerVariant } from "@/animations";
 
 import React, { useState } from "react";
-import NoResults from "@/components/NoResults";
 
 export default function CompaniesList({ companies }) {
   const [filteredCompanies, setFilteredCompanies] = useState(companies);
@@ -28,11 +30,11 @@ export default function CompaniesList({ companies }) {
       break;
   }
   return (
-    <main className="max-w-[1280px] p-4 m-auto">
+    <motion.main className="max-w-[1280px] p-4 m-auto" {...opacityAnimation}>
       <section className="flex items-center mb-4 gap-2 bg-[#F5F5F5] w-[100%] px-4 py-1 rounded-sm drop-shadow-sm hover:bg-[#F2F2F2]">
         <DropdownMenu>
           <DropdownMenuTrigger className="ml-auto outline-none">
-            <IoIosOptions className="text-xl"/>
+            <IoIosOptions className="text-xl" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem
@@ -61,15 +63,24 @@ export default function CompaniesList({ companies }) {
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <SearchBar data={companies} update={setFilteredCompanies} fields={["name", "description"]} placeholder="Search Companies..."/>
+        <SearchBar
+          data={companies}
+          update={setFilteredCompanies}
+          fields={["name", "description"]}
+          placeholder="Search Companies..."
+        />
       </section>
-          {filteredCompanies?.length ? (
-          <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
-            {filteredCompanies.map((company) => <Company key={company._id} company={company} />)}
-          </section>
-        ) : (
-          <NoResults />
-        )}
-    </main>
+      {filteredCompanies?.length ? (
+        <section className="grid sm:grid-cols-2 md:grid-cols-3 grid-cols-1 gap-4">
+          {filteredCompanies.map((company, index) => (
+            <motion.span key={company._id} custom={index} {...staggerVariant}>
+              <Company company={company} />
+            </motion.span>
+          ))}
+        </section>
+      ) : (
+        <NoResults />
+      )}
+    </motion.main>
   );
 }

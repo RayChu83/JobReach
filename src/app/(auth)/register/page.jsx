@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 import React, { useState, useTransition } from "react";
+import { opacityUpwardsAnimation } from "@/animations";
 
 export default function Register() {
   const router = useRouter();
@@ -52,7 +54,10 @@ export default function Register() {
     });
   };
   return (
-    <main className="max-w-[1280px] m-auto p-4">
+    <motion.main
+      className="max-w-[1280px] m-auto p-4"
+      {...opacityUpwardsAnimation}
+    >
       <h1 className="sm:text-4xl text-3xl font-semibold">
         Register for an account:
       </h1>
@@ -118,6 +123,6 @@ export default function Register() {
           </Link>{" "}
         </small>
       </form>
-    </main>
+    </motion.main>
   );
 }

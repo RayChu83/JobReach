@@ -15,7 +15,7 @@ export default function EditUserInfoForm({ name, email, id }) {
   const handleAction = (formData) => {
     startTransition(async () => {
       setFormMessage(null);
-      const name = formData.get("name")
+      const name = formData.get("name");
       const res = await fetch("api/user", {
         method: "put",
         cache: "no-store",

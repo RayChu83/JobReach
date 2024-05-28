@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { FaLocationDot } from "react-icons/fa6";
@@ -5,12 +6,17 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import { Button } from "@/components/ui/button";
 import { FaQuestionCircle } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { opacityAnimation } from "@/animations";
 
 import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col md:grid grid-cols-2 gap-4 max-w-[1280px] m-auto px-4 py-8 items-center">
+    <motion.footer
+      className="flex flex-col md:grid grid-cols-2 gap-4 max-w-[1280px] m-auto px-4 py-8 items-center"
+      {...opacityAnimation}
+    >
       <div className="w-full p-4">
         <Link className="flex items-center w-fit" href="/">
           <Image
@@ -57,6 +63,6 @@ export default function Footer() {
           <Link href="/contact">Frequently asked questions</Link>
         </article>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

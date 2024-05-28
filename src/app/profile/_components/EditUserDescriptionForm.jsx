@@ -15,7 +15,7 @@ export default function EditUserDescriptionForm({ description, id }) {
   const handleAction = (formData) => {
     startTransition(async () => {
       setFormMessage(null);
-      const description = formData.get("description")
+      const description = formData.get("description");
       const res = await fetch("api/user/description", {
         method: "put",
         cache: "no-store",

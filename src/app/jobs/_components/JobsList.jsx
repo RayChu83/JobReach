@@ -10,26 +10,28 @@ import { IoIosOptions } from "react-icons/io";
 import { Job } from "@/components/Job";
 import { sortAlphabetically, sortByMostRecent, sortByOldest } from "@/utils";
 import { SearchBar } from "@/components/SearchBar";
+import NoResults from "@/components/NoResults";
+import { motion } from "framer-motion";
+import { opacityAnimation, staggerVariant } from "@/animations";
 
 import React, { useState } from "react";
-import NoResults from "@/components/NoResults";
 
 export function JobsList({ jobs }) {
-  const [sortedJobs, setSortedJobs] = useState(jobs);
+  const [sortedListings, setSortedListings] = useState(jobs);
   const [sort, setSort] = useState("alphabetical");
   switch (sort) {
     case "recent":
-      sortByMostRecent(sortedJobs, "createdAt");
+      sortByMostRecent(sortedListings, "createdAt");
       break;
     case "oldest":
-      sortByOldest(sortedJobs, "createdAt");
+      sortByOldest(sortedListings, "createdAt");
       break;
     case "alphabetical":
-      sortAlphabetically(sortedJobs, "title");
+      sortAlphabetically(sortedListings, "title");
       break;
   }
   return (
-    <main className="max-w-[1280px] m-auto p-4">
+    <motion.main className="max-w-[1280px] m-auto p-4" {...opacityAnimation}>
       <section className="flex items-center mb-4 gap-2 bg-[#F5F5F5] px-4 py-1 rounded-sm drop-shadow-sm w-[100%] hover:bg-[#F2F2F2]">
         <DropdownMenu>
           <DropdownMenuTrigger>
@@ -64,18 +66,22 @@ export function JobsList({ jobs }) {
         </DropdownMenu>
         <SearchBar
           data={jobs}
-          update={setSortedJobs}
+          update={setSortedListings}
           fields={["title", "description"]}
           placeholder="Search Jobs..."
         />
       </section>
-        {sortedJobs?.length ? (
-          <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4 ">
-            {sortedJobs.map((job) => <Job job={job} key={job._id} displayDetailsOnHover={true}/>)}
-          </section>
-        ) : (
-          <NoResults />
-        )}
-    </main>
+      {sortedListings?.length ? (
+        <section className="grid sm:grid-cols-2 grid-cols-1 gap-4 mb-4">
+          {sortedListings.map((job, index) => (
+            <motion.span key={job._id} custom={index} {...staggerVariant}>
+              <Job job={job} displayDetailsOnHover={true} />
+            </motion.span>
+          ))}
+        </section>
+      ) : (
+        <NoResults />
+      )}
+    </motion.main>
   );
 }

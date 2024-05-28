@@ -1,13 +1,19 @@
+"use client";
 import { Link } from "next-view-transitions";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { opacityLeftAnimation, opacityRightAnimation } from "@/animations";
 
 import React from "react";
 
 export default function Hero() {
   return (
     <section className="flex items-center justify-between max-w-[1280px] m-auto flex-wrap p-4 gap-4">
-      <div className="flex flex-col gap-y-4">
+      <motion.div
+        className="flex flex-col gap-y-4"
+        {...opacityRightAnimation}
+      >
         <h1 className="sm:text-[42px] text-[32px] sm:leading-[50px] leading-[40px] font-semibold">
           Explore over 100+
           <span className="text-[#1bbe17ff] drop-shadow-[0_0_125px_rgba(27,190,23,0.75)]">
@@ -19,16 +25,17 @@ export default function Hero() {
         <Button variant="cta" asChild className="w-fit">
           <Link href="/jobs">Explore Jobs</Link>
         </Button>
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        {...opacityLeftAnimation}
+      >
         <Image
           src={`/hero.png`}
           alt="hero"
           height="500"
           width="500"
-          className="bg-[#F5F5F5] rounded-tl-[45%] rounded-br-[45%] rounded-bl-2xl rounded-tr-2xl p-2 drop-shadow-sm"
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

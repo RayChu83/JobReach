@@ -1,3 +1,4 @@
+"use client"
 import {
   Accordion,
   AccordionContent,
@@ -8,16 +9,14 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 import Contactform from "@/app/contact/_components/Contactform";
+import { motion } from "framer-motion";
+import { opacityUpwardsAnimation } from "@/animations";
 
 import React from "react";
 
-export const metadata = {
-  title: "Contact Us - JobReach",
-};
-
 export default function Contact() {
   return (
-    <main className="p-4 max-w-[1280px] m-auto">
+    <motion.main className="p-4 max-w-[1280px] m-auto" {...opacityUpwardsAnimation}>
       <h2 className="text-3xl font-medium">Frequently Asked Questions:</h2>
       <br />
       <Accordion type="single" collapsible className="w-full">
@@ -38,8 +37,8 @@ export default function Contact() {
         <AccordionItem value="item-3">
           <AccordionTrigger>Who can see my profile?</AccordionTrigger>
           <AccordionContent>
-
-          Only employers have access to view your profile; other users do not have permission.
+            Only employers have access to view your profile; other users do not
+            have permission.
           </AccordionContent>
         </AccordionItem>
       </Accordion>
@@ -63,6 +62,6 @@ export default function Contact() {
         </div>
       </section>
       <br />
-    </main>
+    </motion.main>
   );
 }

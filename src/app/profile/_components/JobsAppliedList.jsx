@@ -1,7 +1,7 @@
 import { Job } from "@/components/Job";
 import { Button } from "@/components/ui/button";
 import { Link } from "next-view-transitions";
-import NoApplications from "@/app/profile/_components/NoApplications"
+import NoApplications from "@/app/profile/_components/NoApplications";
 
 import React from "react";
 

@@ -8,8 +8,10 @@ import { Link } from "next-view-transitions";
 import { useRouter } from "next/navigation";
 import { FaClock } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 import React, { useState, useTransition } from "react";
+import { opacityUpwardsAnimation } from "@/animations";
 
 export default function Login() {
   const router = useRouter();
@@ -81,7 +83,10 @@ export default function Login() {
     });
   };
   return (
-    <main className="max-w-[1280px] m-auto p-4">
+    <motion.main
+      className="max-w-[1280px] m-auto p-4"
+      {...opacityUpwardsAnimation}
+    >
       <h1 className="sm:text-4xl text-3xl font-semibold">
         Login to an existing account:
       </h1>
@@ -159,6 +164,6 @@ export default function Login() {
           </Link>
         </small>
       </form>
-    </main>
+    </motion.main>
   );
 }
