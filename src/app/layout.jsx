@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { ViewTransitions } from "next-view-transitions";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,7 @@ export default async function RootLayout({ children }) {
           <SessionProvider session={session}>
             <Navbar />
             {children}
+            <Toaster />
           </SessionProvider>
         </body>
       </html>

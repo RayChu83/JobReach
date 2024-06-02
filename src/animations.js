@@ -52,20 +52,20 @@ export const staggerVariant = {
       },
     }),
   },
-  initial : "hidden",
-  animate : "visible",
+  initial: "hidden",
+  animate: "visible",
 };
 
 export const slowStaggerVariant = {
-    variants: {
-      hidden: { opacity: 0 },
-      visible: (i) => ({
-        opacity: 1,
-        transition: {
-          delay: i * 0.25,
-        },
-      }),
-    },
-    initial : "hidden",
-    animate : "visible",
-  };
+  variants: {
+    hidden: { opacity: 0 },
+    visible: (i) => ({
+      opacity: 1,
+      transition: {
+        delay: i * 0.2,
+      },
+    }),
+  },
+  initial: "hidden",
+  animate: "visible",
+};
