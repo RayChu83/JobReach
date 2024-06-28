@@ -13,7 +13,7 @@
 <h2>🔍 My approach</h2>
 <ul>
   <li><strong>1. Create the project identity</strong></li>
-  <p> The first step in my approach was deciding upon a name for the project. Once choosing the name "JobReach", I proceeded to create a color palette based om color theory to best represent the projects identity.</p>
+  <p> The first step in my approach was deciding upon a name for the project. Once choosing the name "JobReach", I proceeded to create a color palette based on color theory to best represent the projects identity.</p>
   <li><strong>2. Asset creation</strong></li>
   <p>Following the created project identity guidelines, I designed the necessary visual assets which includes the logo and the favicon. </p>
   <li><strong>3. Designing the User Interface for Static Components</strong></li>
